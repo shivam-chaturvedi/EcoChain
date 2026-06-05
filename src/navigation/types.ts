@@ -1,0 +1,23 @@
+export type RootStackParamList = {
+  IntroCarousel: undefined;
+  Login: undefined;
+  LocationSelection: undefined;
+  RoleSelection: undefined;
+  SchoolRegistration: undefined;
+  PersonalIdentity: undefined;
+  SchoolCode: undefined;
+  InterestsSelection: undefined;
+  AvatarSelection: undefined;
+  SetPreferences: undefined;
+  CarbonCommute: undefined;
+  CarbonFootprintResult: undefined;
+  StudentHome: undefined;
+  StudentCalendar: undefined;
+  ArenaHub: undefined;
+  ArenaChallenges: undefined;
+  ChallengeDetail: undefined;
+  CampaignDetail: undefined;
+  Campaigns: undefined;
+  ImpactHub: undefined;
+  ActivityFeed: undefined;
+};
