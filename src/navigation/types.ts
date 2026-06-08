@@ -4,6 +4,18 @@ export type RootStackParamList = {
   LocationSelection: undefined;
   RoleSelection: undefined;
   SchoolRegistration: undefined;
+  AdminProfileSetup: undefined;
+  SchoolCodeGeneration: undefined;
+  StudentStructure: undefined;
+  SustainabilityGoals: undefined;
+  OnboardingComplete: undefined;
+  AcademyOverview: undefined;
+  SchoolAnalytics: undefined;
+  FacultyOverview: undefined;
+  StudentsOverview: undefined;
+  TeacherDetailProfile: undefined;
+  StudentDetailProfile: undefined;
+  ClassroomManagement: undefined;
   PersonalIdentity: undefined;
   SchoolCode: undefined;
   InterestsSelection: undefined;
