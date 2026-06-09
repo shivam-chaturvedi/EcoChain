@@ -148,7 +148,7 @@ export default function ArenaHubScreen({ navigation }: Props) {
               </View>
               <Text style={styles.gradeTxt}>10th Grade</Text>
             </View>
-            <TouchableOpacity style={styles.arrowCircle} activeOpacity={0.7}>
+            <TouchableOpacity style={styles.arrowCircle} activeOpacity={0.7} onPress={() => navigation.navigate('Leaderboard')}>
               <Text style={styles.arrowTxt}>↗</Text>
             </TouchableOpacity>
           </View>

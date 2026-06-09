@@ -23,6 +23,14 @@ import CampaignDetailScreen from '../features/hub/screens/CampaignDetailScreen';
 import CampaignsScreen from '../features/hub/screens/CampaignsScreen';
 import ImpactHubScreen from '../features/impactHub/screens/ImpactHubScreen';
 import ActivityFeedScreen from '../features/impactHub/screens/ActivityFeedScreen';
+import LogActivityScreen from '../features/student/screens/LogActivityScreen';
+import ActivityFormScreen from '../features/student/screens/ActivityFormScreen';
+import ActivitySubmittedScreen from '../features/student/screens/ActivitySubmittedScreen';
+import LeaderboardScreen from '../features/hub/screens/LeaderboardScreen';
+import SettingsScreen from '../features/student/screens/SettingsScreen';
+import EcoWalletScreen from '../features/impactHub/screens/EcoWalletScreen';
+import StudentProfileScreen from '../features/student/screens/StudentProfileScreen';
+import EcoBotScreen from '../features/student/screens/EcoBotScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -53,6 +61,14 @@ export default function AppNavigator() {
         <Stack.Screen name="Campaigns" component={CampaignsScreen} />
         <Stack.Screen name="ImpactHub" component={ImpactHubScreen} />
         <Stack.Screen name="ActivityFeed" component={ActivityFeedScreen} />
+        <Stack.Screen name="LogActivity" component={LogActivityScreen} />
+        <Stack.Screen name="ActivityForm" component={ActivityFormScreen} />
+        <Stack.Screen name="ActivitySubmitted" component={ActivitySubmittedScreen} />
+        <Stack.Screen name="Leaderboard" component={LeaderboardScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="EcoWallet" component={EcoWalletScreen} />
+        <Stack.Screen name="StudentProfile" component={StudentProfileScreen} />
+        <Stack.Screen name="EcoBot" component={EcoBotScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

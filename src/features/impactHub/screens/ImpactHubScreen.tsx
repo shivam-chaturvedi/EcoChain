@@ -62,7 +62,7 @@ function BottomTabBar({
     { label: 'Home',    emoji: '🏠', route: 'StudentHome' as const },
     { label: 'Impact',  emoji: '🌿', route: 'ImpactHub'   as const, active: true },
     { label: 'Arena',   emoji: '🏟️', route: 'ArenaHub' as const },
-    { label: 'Profile', emoji: '👤', route: null },
+    { label: 'Profile', emoji: '👤', route: 'StudentProfile' as const },
   ];
 
   return (
@@ -201,6 +201,7 @@ export default function ImpactHubScreen({ navigation }: Props) {
         </View>
 
         {/* ── My Wallet card ─────────────────── */}
+        <TouchableOpacity activeOpacity={0.9} onPress={() => navigation.navigate('EcoWallet')}>
         <View style={styles.walletCard}>
           {/* Wallet icon */}
           <View style={styles.walletIconCircle}>
@@ -221,6 +222,7 @@ export default function ImpactHubScreen({ navigation }: Props) {
             <View style={styles.progressFill} />
           </View>
         </View>
+        </TouchableOpacity>
 
         {/* ── Activity Feed preview ──────────── */}
         <View style={styles.feedSection}>

@@ -20,4 +20,12 @@ export type RootStackParamList = {
   Campaigns: undefined;
   ImpactHub: undefined;
   ActivityFeed: undefined;
+  LogActivity: undefined;
+  ActivityForm: { activityType?: string };
+  ActivitySubmitted: undefined;
+  Leaderboard: undefined;
+  Settings: undefined;
+  EcoWallet: undefined;
+  StudentProfile: undefined;
+  EcoBot: undefined;
 };

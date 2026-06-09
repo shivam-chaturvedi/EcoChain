@@ -146,7 +146,7 @@ export default function ActivityFeedScreen({ navigation }: Props) {
       </ScrollView>
 
       {/* FAB */}
-      <TouchableOpacity style={styles.fab} activeOpacity={0.85}>
+      <TouchableOpacity style={styles.fab} activeOpacity={0.85} onPress={() => navigation.navigate('LogActivity')}>
         <Text style={styles.fabPlus}>+</Text>
       </TouchableOpacity>
     </SafeAreaView>
