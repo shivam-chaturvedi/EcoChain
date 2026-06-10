@@ -31,6 +31,27 @@ import SettingsScreen from '../features/student/screens/SettingsScreen';
 import EcoWalletScreen from '../features/impactHub/screens/EcoWalletScreen';
 import StudentProfileScreen from '../features/student/screens/StudentProfileScreen';
 import EcoBotScreen from '../features/student/screens/EcoBotScreen';
+import TeacherLandingScreen from '../features/teacher/screens/TeacherLandingScreen';
+import TeacherPersonalInfoScreen from '../features/teacher/screens/TeacherPersonalInfoScreen';
+import TeacherClassSelectionScreen from '../features/teacher/screens/TeacherClassSelectionScreen';
+import TeacherNotificationsScreen from '../features/teacher/screens/TeacherNotificationsScreen';
+import TeacherFeatureTourScreen from '../features/teacher/screens/TeacherFeatureTourScreen';
+import TeacherDashboardScreen from '../features/teacher/screens/TeacherDashboardScreen';
+import TeacherClassManagerScreen from '../features/teacher/screens/TeacherClassManagerScreen';
+import TeacherAnalyticsDashboardScreen from '../features/teacher/screens/TeacherAnalyticsDashboardScreen';
+import TeacherCalendarScreen from '../features/teacher/screens/TeacherCalendarScreen';
+import TeacherLeaderboardScreen from '../features/teacher/screens/TeacherLeaderboardScreen';
+import TeacherStudentRosterScreen from '../features/teacher/screens/TeacherStudentRosterScreen';
+import TeacherChallengeArenaScreen from '../features/teacher/screens/TeacherChallengeArenaScreen';
+import TeacherCreateChallengeScreen from '../features/teacher/screens/TeacherCreateChallengeScreen';
+import TeacherVerificationQueueScreen from '../features/teacher/screens/TeacherVerificationQueueScreen';
+import SchoolReviewQueueScreen from '../features/school/screens/SchoolReviewQueueScreen';
+import SchoolPendingSubmissionsScreen from '../features/school/screens/SchoolPendingSubmissionsScreen';
+import SuperAdminVerificationQueueScreen from '../features/superAdmin/screens/SuperAdminVerificationQueueScreen';
+import TeacherSubmissionDetailScreen from '../features/teacher/screens/TeacherSubmissionDetailScreen';
+import TeacherCreateAnnouncementScreen from '../features/teacher/screens/TeacherCreateAnnouncementScreen';
+import TeacherAnnouncementsManagerScreen from '../features/teacher/screens/TeacherAnnouncementsManagerScreen';
+import TeacherProfileScreen from '../features/teacher/screens/TeacherProfileScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -69,6 +90,27 @@ export default function AppNavigator() {
         <Stack.Screen name="EcoWallet" component={EcoWalletScreen} />
         <Stack.Screen name="StudentProfile" component={StudentProfileScreen} />
         <Stack.Screen name="EcoBot" component={EcoBotScreen} />
+        <Stack.Screen name="TeacherLanding" component={TeacherLandingScreen} />
+        <Stack.Screen name="TeacherPersonalInfo" component={TeacherPersonalInfoScreen} />
+        <Stack.Screen name="TeacherClassSelection" component={TeacherClassSelectionScreen} />
+        <Stack.Screen name="TeacherNotifications" component={TeacherNotificationsScreen} />
+        <Stack.Screen name="TeacherFeatureTour" component={TeacherFeatureTourScreen} />
+        <Stack.Screen name="TeacherDashboard" component={TeacherDashboardScreen} />
+        <Stack.Screen name="TeacherClassManager" component={TeacherClassManagerScreen} />
+        <Stack.Screen name="TeacherAnalyticsDashboard" component={TeacherAnalyticsDashboardScreen} />
+        <Stack.Screen name="TeacherCalendar" component={TeacherCalendarScreen} />
+        <Stack.Screen name="TeacherLeaderboard" component={TeacherLeaderboardScreen} />
+        <Stack.Screen name="TeacherStudentRoster" component={TeacherStudentRosterScreen} />
+        <Stack.Screen name="TeacherChallengeArena" component={TeacherChallengeArenaScreen} />
+        <Stack.Screen name="TeacherCreateChallenge" component={TeacherCreateChallengeScreen} />
+        <Stack.Screen name="TeacherVerificationQueue" component={TeacherVerificationQueueScreen} />
+        <Stack.Screen name="SchoolReviewQueue" component={SchoolReviewQueueScreen} />
+        <Stack.Screen name="SchoolPendingSubmissions" component={SchoolPendingSubmissionsScreen} />
+        <Stack.Screen name="SuperAdminVerificationQueue" component={SuperAdminVerificationQueueScreen} />
+        <Stack.Screen name="TeacherSubmissionDetail" component={TeacherSubmissionDetailScreen} />
+        <Stack.Screen name="TeacherCreateAnnouncement" component={TeacherCreateAnnouncementScreen} />
+        <Stack.Screen name="TeacherAnnouncementsManager" component={TeacherAnnouncementsManagerScreen} />
+        <Stack.Screen name="TeacherProfile" component={TeacherProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
