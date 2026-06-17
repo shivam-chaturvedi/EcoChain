@@ -58,8 +58,9 @@ export default function RoleSelectionScreen({ navigation }: Props) {
       navigation.navigate('SchoolRegistration');
     } else if (selectedRole === 'student') {
       navigation.navigate('PersonalIdentity');
+    } else if (selectedRole === 'teacher') {
+      navigation.navigate('TeacherLanding');
     }
-    // Teacher flow will navigate elsewhere once built
   };
 
   return (

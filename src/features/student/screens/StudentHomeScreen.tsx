@@ -21,10 +21,10 @@ type Props = {
 
 // ─── Static data ─────────────────────────────────────────────────────────────
 const QUICK_ACTIONS = [
-  { id: 'log',    emoji: '✅', label: 'Log Activity',  bg: '#E8F5EE', route: 'ActivityFeed' as const },
-  { id: 'rew',    emoji: '🏅', label: 'View Rewards',  bg: '#E8F5EE', route: null },
+  { id: 'log',    emoji: '✅', label: 'Log Activity',  bg: '#E8F5EE', route: 'LogActivity' as const },
+  { id: 'rew',    emoji: '🏅', label: 'View Rewards',  bg: '#E8F5EE', route: 'EcoWallet' as const },
   { id: 'cal',    emoji: '📅', label: 'Calendar',      bg: '#EEF2FF', route: 'StudentCalendar' as const },
-  { id: 'lead',   emoji: '📊', label: 'Leaderboard',   bg: '#FEF3C7', route: 'ArenaHub' as const },
+  { id: 'lead',   emoji: '📊', label: 'Leaderboard',   bg: '#FEF3C7', route: 'Leaderboard' as const },
 ];
 
 const ACTIVITIES = [
