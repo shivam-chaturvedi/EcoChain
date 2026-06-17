@@ -11,6 +11,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SchoolScreenHeader from '../../../components/SchoolScreenHeader';
 import SchoolBottomNav, { BOTTOM_NAV_HEIGHT } from '../../../components/SchoolBottomNav';
+import AppIcon from '../../../components/AppIcon';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -20,6 +21,13 @@ type Props = {
 };
 
 export default function SchoolSettingsProfileScreen({ navigation }: Props) {
+  const handleLogout = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Login' }],
+    });
+  };
+
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle="dark-content" backgroundColor="#F8FAFC" />
@@ -114,6 +122,14 @@ export default function SchoolSettingsProfileScreen({ navigation }: Props) {
             <Text style={styles.statValue}>86</Text>
           </View>
         </View>
+
+        <TouchableOpacity
+          style={styles.logoutBtn}
+          onPress={handleLogout}
+          activeOpacity={0.85}>
+          <AppIcon name="logout" size={20} color="#DC2626" />
+          <Text style={styles.logoutBtnText}>Log Out</Text>
+        </TouchableOpacity>
 
       </ScrollView>
 
@@ -267,7 +283,30 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 22,
     fontWeight: '800',
-    color: '#006D5B', // Teal number
+    color: '#006D5B',
+  },
+  logoutBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+    backgroundColor: Colors.white,
+    borderWidth: 1.5,
+    borderColor: '#FECACA',
+    borderRadius: 16,
+    paddingVertical: 16,
+    marginBottom: 24,
+    shadowColor: '#DC2626',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.06,
+    shadowRadius: 6,
+    elevation: 2,
+  },
+  logoutBtnText: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#DC2626',
+    letterSpacing: 0.2,
   },
   bottomPad: {
     height: 40,
