@@ -8,6 +8,8 @@ import {
   ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import AppIcon from '../../../components/AppIcon';
+import AppLogo from '../../../components/AppLogo';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -20,25 +22,25 @@ type Props = {
 
 const ROLES: {
   id: Role;
-  emoji: string;
+  icon: string;
   name: string;
   description: string;
 }[] = [
   {
     id: 'student',
-    emoji: '📅',
+    icon: 'school',
     name: 'Student',
     description: 'Learn, earn rewards, and compete with friends.',
   },
   {
     id: 'teacher',
-    emoji: '📋',
+    icon: 'assignment',
     name: 'Teacher',
     description: 'Manage classes and track environmental progress.',
   },
   {
     id: 'school',
-    emoji: '🏢',
+    icon: 'domain',
     name: 'School',
     description: 'Oversee your entire campus sustainability data.',
   },
@@ -64,7 +66,10 @@ export default function RoleSelectionScreen({ navigation }: Props) {
 
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.brandName}>EcoChain</Text>
+        <View style={styles.headerBrand}>
+          <AppLogo size={30} />
+          <Text style={styles.brandName}>EcoChain</Text>
+        </View>
       </View>
 
       <ScrollView
@@ -90,7 +95,11 @@ export default function RoleSelectionScreen({ navigation }: Props) {
                 onPress={() => setSelectedRole(role.id)}
                 activeOpacity={0.8}>
                 <View style={[styles.iconCircle, isSelected && styles.iconCircleSelected]}>
-                  <Text style={styles.roleEmoji}>{role.emoji}</Text>
+                  <AppIcon
+                    name={role.icon}
+                    size={28}
+                    color={isSelected ? Colors.primaryDark : '#059669'}
+                  />
                 </View>
                 <Text style={[styles.roleName, isSelected && styles.roleNameSelected]}>
                   {role.name}
@@ -139,6 +148,11 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     borderBottomWidth: 1,
     borderBottomColor: Colors.border,
+  },
+  headerBrand: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
   },
   brandName: {
     fontSize: 18,
@@ -208,9 +222,6 @@ const styles = StyleSheet.create({
   },
   iconCircleSelected: {
     backgroundColor: '#C8EDDA',
-  },
-  roleEmoji: {
-    fontSize: 28,
   },
   roleName: {
     fontSize: 17,

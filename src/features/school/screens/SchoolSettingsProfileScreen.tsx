@@ -4,11 +4,13 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
   ScrollView,
   TextInput,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import SchoolScreenHeader from '../../../components/SchoolScreenHeader';
+import SchoolBottomNav, { BOTTOM_NAV_HEIGHT } from '../../../components/SchoolBottomNav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -19,43 +21,29 @@ type Props = {
 
 export default function SchoolSettingsProfileScreen({ navigation }: Props) {
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle="dark-content" backgroundColor="#F8FAFC" />
-      
-      {/* Header */}
-      <View style={styles.header}>
-        <View style={styles.headerBrand}>
-          <Text style={styles.headerBrandIcon}>eco</Text>
-          <Text style={styles.brandName}>EcoSchools Admin</Text>
-        </View>
-      </View>
+
+      <SchoolScreenHeader
+        navigation={navigation}
+        showBrand={false}
+        title="School Profile"
+        showNotifications
+      />
 
       <ScrollView
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, { paddingBottom: BOTTOM_NAV_HEIGHT + 20 }]}
         showsVerticalScrollIndicator={false}>
 
         {/* Title Section */}
         <Text style={styles.title}>School Profile</Text>
         <Text style={styles.subtitle}>
-          Manage your institution's identity, branding, and security preferences.
+          Manage your institution's identity and contact details.
         </Text>
-
-        {/* Tabs */}
-        <View style={styles.tabsRow}>
-          <TouchableOpacity style={[styles.tabPill, styles.tabPillActive]}>
-            <Text style={[styles.tabText, styles.tabTextActive]}>GENERAL INFO</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.tabPill}>
-            <Text style={styles.tabText}>NOTIFICATIONS</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.tabPill}>
-            <Text style={styles.tabText}>SECURITY</Text>
-          </TouchableOpacity>
-        </View>
 
         {/* Form Card */}
         <View style={styles.formCard}>
-          <Text style={styles.cardTitle}>Institutional Details</Text>
+          <Text style={styles.cardTitle}>General Info</Text>
 
           <View style={styles.inputGroup}>
             <Text style={styles.inputLabel}>SCHOOL NAME</Text>
@@ -127,8 +115,9 @@ export default function SchoolSettingsProfileScreen({ navigation }: Props) {
           </View>
         </View>
 
-        <View style={styles.bottomPad} />
       </ScrollView>
+
+      <SchoolBottomNav navigation={navigation} activeRoute="SchoolSettingsProfile" />
     </SafeAreaView>
   );
 }
@@ -176,28 +165,6 @@ const styles = StyleSheet.create({
     color: '#475569',
     lineHeight: 18,
     marginBottom: 24,
-  },
-  tabsRow: {
-    flexDirection: 'row',
-    gap: 8,
-    marginBottom: 24,
-  },
-  tabPill: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 16,
-  },
-  tabPillActive: {
-    backgroundColor: '#004D40',
-  },
-  tabText: {
-    fontSize: 10,
-    fontWeight: '800',
-    color: '#64748B',
-    letterSpacing: 0.5,
-  },
-  tabTextActive: {
-    color: Colors.white,
   },
   formCard: {
     backgroundColor: Colors.white,

@@ -12,6 +12,8 @@ import {
   Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import AppIcon from '../../../components/AppIcon';
+import AppLogo from '../../../components/AppLogo';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -54,9 +56,7 @@ export default function LoginScreen({ navigation }: Props) {
 
             {/* Logo */}
             <View style={styles.logoArea}>
-              <View style={styles.logoCircle}>
-                <Text style={styles.logoEmoji}>🌿</Text>
-              </View>
+              <AppLogo size={72} />
               <Text style={styles.logoName}>EcoChain</Text>
             </View>
 
@@ -70,7 +70,9 @@ export default function LoginScreen({ navigation }: Props) {
             <View style={styles.fieldGroup}>
               <Text style={styles.fieldLabel}>EMAIL ADDRESS</Text>
               <View style={styles.inputWrapper}>
-                <Text style={styles.inputIcon}>✉️</Text>
+                <View style={{ marginRight: 10 }}>
+                  <AppIcon name="email" size={18} color={Colors.textSecondary} />
+                </View>
                 <TextInput
                   style={styles.textInput}
                   placeholder="name@ecosystem.com"
@@ -93,7 +95,9 @@ export default function LoginScreen({ navigation }: Props) {
                 </TouchableOpacity>
               </View>
               <View style={styles.inputWrapper}>
-                <Text style={styles.inputIcon}>🔒</Text>
+                <View style={{ marginRight: 10 }}>
+                  <AppIcon name="lock" size={18} color={Colors.textSecondary} />
+                </View>
                 <TextInput
                   style={[styles.textInput, styles.passwordInput]}
                   placeholder="••••••••"
@@ -108,7 +112,11 @@ export default function LoginScreen({ navigation }: Props) {
                   onPress={() => setShowPassword(!showPassword)}
                   style={styles.eyeBtn}
                   activeOpacity={0.7}>
-                  <Text style={styles.eyeIcon}>{showPassword ? '🙈' : '👁️'}</Text>
+                  <AppIcon
+                    name={showPassword ? 'visibility-off' : 'visibility'}
+                    size={20}
+                    color={Colors.textSecondary}
+                  />
                 </TouchableOpacity>
               </View>
             </View>

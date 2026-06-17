@@ -12,6 +12,8 @@ import {
   Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import SchoolScreenHeader from '../../../components/SchoolScreenHeader';
+import SchoolBottomNav, { BOTTOM_NAV_HEIGHT } from '../../../components/SchoolBottomNav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -45,18 +47,10 @@ export default function SchoolRegistrationScreen({ navigation }: Props) {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top', 'bottom']}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle="dark-content" backgroundColor={Colors.white} />
 
-      {/* Header */}
-      <View style={styles.header}>
-        <View style={styles.brandRow}>
-          <View style={styles.brandIconCircle}>
-            <Text style={styles.brandIconEmoji}>🌿</Text>
-          </View>
-          <Text style={styles.brandName}>EcoSystem</Text>
-        </View>
-      </View>
+      <SchoolScreenHeader navigation={navigation} />
 
       {/* Progress indicator */}
       <View style={styles.progressSection}>
@@ -76,7 +70,7 @@ export default function SchoolRegistrationScreen({ navigation }: Props) {
         style={styles.kavFlex}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <ScrollView
-          contentContainerStyle={styles.scrollContent}
+          contentContainerStyle={[styles.scrollContent, { paddingBottom: BOTTOM_NAV_HEIGHT + 24 }]}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled">
 
@@ -212,9 +206,10 @@ export default function SchoolRegistrationScreen({ navigation }: Props) {
             <Text style={styles.termsLink}>Terms of Service</Text>.
           </Text>
 
-          <View style={styles.bottomPad} />
         </ScrollView>
       </KeyboardAvoidingView>
+
+      <SchoolBottomNav navigation={navigation} activeRoute="SchoolRegistration" />
     </SafeAreaView>
   );
 }

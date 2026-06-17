@@ -4,10 +4,13 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
   ScrollView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import AppIcon from '../../../components/AppIcon';
+import SchoolScreenHeader from '../../../components/SchoolScreenHeader';
+import SchoolBottomNav, { BOTTOM_NAV_HEIGHT } from '../../../components/SchoolBottomNav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -18,39 +21,20 @@ type Props = {
 
 export default function StudentDetailProfileScreen({ navigation }: Props) {
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle="dark-content" backgroundColor="#F8FAFC" />
-      
-      {/* Header */}
-      <View style={styles.header}>
-        <View style={styles.headerLeft}>
-          <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
-            <Text style={styles.backIcon}>←</Text>
-          </TouchableOpacity>
-          <View style={styles.headerLogoBg}>
-             <Text style={styles.headerLogoEmoji}>🌿</Text>
-          </View>
-          <Text style={styles.brandName}>ChonX</Text>
-        </View>
-        <View style={styles.headerRight}>
-          <TouchableOpacity style={styles.iconBtn}>
-            <Text style={styles.headerIcon}>🔔</Text>
-          </TouchableOpacity>
-          <View style={styles.profileCircle}>
-            <Text style={styles.profileIcon}>👤</Text>
-          </View>
-        </View>
-      </View>
+
+      <SchoolScreenHeader navigation={navigation} showNotifications showSettings />
 
       <ScrollView
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, { paddingBottom: BOTTOM_NAV_HEIGHT + 20 }]}
         showsVerticalScrollIndicator={false}>
 
         {/* Profile Card */}
         <View style={styles.profileCard}>
           <View style={styles.avatarContainer}>
             <View style={styles.avatarCircle}>
-              <Text style={styles.avatarEmoji}>🧑🏾</Text>
+              <AppIcon name="person" size={40} color="#64748B" />
             </View>
             <View style={styles.levelBadge}>
               <Text style={styles.levelBadgeText}>LEVEL 12</Text>
@@ -266,8 +250,9 @@ export default function StudentDetailProfileScreen({ navigation }: Props) {
           </View>
         </View>
 
-        <View style={styles.bottomPad} />
       </ScrollView>
+
+      <SchoolBottomNav navigation={navigation} activeRoute="StudentDetailProfile" />
     </SafeAreaView>
   );
 }

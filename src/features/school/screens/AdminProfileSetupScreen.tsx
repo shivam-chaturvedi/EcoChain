@@ -11,6 +11,8 @@ import {
   Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import SchoolScreenHeader from '../../../components/SchoolScreenHeader';
+import SchoolBottomNav, { BOTTOM_NAV_HEIGHT } from '../../../components/SchoolBottomNav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -34,22 +36,16 @@ export default function AdminProfileSetupScreen({ navigation }: Props) {
     phone.trim().length > 0;
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top', 'bottom']}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle="dark-content" backgroundColor={Colors.surface} />
-      
-      {/* Header */}
-      <View style={styles.header}>
-        <View style={styles.brandRow}>
-          <Text style={styles.brandIconEmoji}>🌿</Text>
-          <Text style={styles.brandName}>ChonX</Text>
-        </View>
-      </View>
+
+      <SchoolScreenHeader navigation={navigation} />
 
       <KeyboardAvoidingView
         style={styles.kavFlex}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <ScrollView
-          contentContainerStyle={styles.scrollContent}
+          contentContainerStyle={[styles.scrollContent, { paddingBottom: BOTTOM_NAV_HEIGHT + 24 }]}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled">
 
@@ -176,9 +172,10 @@ export default function AdminProfileSetupScreen({ navigation }: Props) {
             </View>
           </View>
 
-          <View style={styles.bottomPad} />
         </ScrollView>
       </KeyboardAvoidingView>
+
+      <SchoolBottomNav navigation={navigation} activeRoute="AdminProfileSetup" />
     </SafeAreaView>
   );
 }

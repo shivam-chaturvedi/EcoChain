@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AppIcon from '../../../components/AppIcon';
+import SchoolScreenHeader from '../../../components/SchoolScreenHeader';
 import SchoolBottomNav, { BOTTOM_NAV_HEIGHT } from '../../../components/SchoolBottomNav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
@@ -63,23 +64,7 @@ export default function FacultyOverviewScreen({ navigation }: Props) {
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle="dark-content" backgroundColor="#F8FAFC" />
 
-      {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
-          <AppIcon name="arrow-back" size={22} color="#006D5B" />
-        </TouchableOpacity>
-        <View style={styles.headerBrand}>
-          <View style={styles.headerLogoBg}>
-            <AppIcon name="eco" size={16} color="#fff" />
-          </View>
-          <Text style={styles.brandName}>EcoChain</Text>
-        </View>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('NotificationCenter')}
-          style={styles.headerIconBtn}>
-          <AppIcon name="notifications" size={22} color="#334155" />
-        </TouchableOpacity>
-      </View>
+      <SchoolScreenHeader navigation={navigation} showNotifications />
 
       <ScrollView
         contentContainerStyle={[styles.scrollContent, { paddingBottom: BOTTOM_NAV_HEIGHT + 20 }]}

@@ -9,6 +9,9 @@ import {
   Clipboard,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import AppIcon from '../../../components/AppIcon';
+import SchoolScreenHeader from '../../../components/SchoolScreenHeader';
+import SchoolBottomNav, { BOTTOM_NAV_HEIGHT } from '../../../components/SchoolBottomNav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -35,27 +38,18 @@ export default function SchoolCodeGenerationScreen({ navigation }: Props) {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top', 'bottom']}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle="dark-content" backgroundColor={Colors.white} />
 
-      {/* Header */}
-      <View style={styles.header}>
-        <View style={styles.brandRow}>
-          <View style={styles.brandIconCircle}>
-            <Text style={styles.brandIconEmoji}>🌿</Text>
-          </View>
-          <Text style={styles.brandName}>EcoChain</Text>
-        </View>
-      </View>
+      <SchoolScreenHeader navigation={navigation} />
 
       <ScrollView
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, { paddingBottom: BOTTOM_NAV_HEIGHT + 24 }]}
         showsVerticalScrollIndicator={false}>
 
-        {/* Icon + Title */}
         <View style={styles.heroSection}>
           <View style={styles.iconCircle}>
-            <Text style={styles.iconEmoji}>🎓</Text>
+            <AppIcon name="school" size={32} color="#059669" />
           </View>
           <Text style={styles.title}>Generate your{'\n'}School Code</Text>
           <Text style={styles.subtitle}>
@@ -113,6 +107,8 @@ export default function SchoolCodeGenerationScreen({ navigation }: Props) {
         )}
 
       </ScrollView>
+
+      <SchoolBottomNav navigation={navigation} activeRoute="SchoolCodeGeneration" />
     </SafeAreaView>
   );
 }

@@ -5,10 +5,13 @@ import {
   ScrollView,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
   Dimensions,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import AppIcon from '../../../components/AppIcon';
+import SchoolScreenHeader from '../../../components/SchoolScreenHeader';
+import SchoolBottomNav, { BOTTOM_NAV_HEIGHT } from '../../../components/SchoolBottomNav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -73,23 +76,14 @@ export default function SchoolReviewQueueScreen({ navigation }: Props) {
   );
 
   return (
-    <SafeAreaView style={styles.safe}>
+    <SafeAreaView style={styles.safe} edges={['top']}>
       <StatusBar barStyle="dark-content" backgroundColor="#F0F7F2" />
 
-      {/* ── Header ── */}
-      <View style={styles.header}>
-        <Text style={styles.brandText}>ChonX</Text>
-        <View style={styles.headerRight}>
-          <TouchableOpacity style={styles.iconBtn} activeOpacity={0.7}>
-            <Text style={styles.bellText}>🔔</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.avatarBtn} activeOpacity={0.8}>
-            <Text style={styles.avatarBtnText}>👤</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      <SchoolScreenHeader navigation={navigation} showNotifications showSettings />
 
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={[styles.scroll, { paddingBottom: BOTTOM_NAV_HEIGHT + 20 }]}>
 
         {/* ── Title block ── */}
         <View style={styles.titleBlock}>
@@ -124,7 +118,7 @@ export default function SchoolReviewQueueScreen({ navigation }: Props) {
                   {/* Status row */}
                   <View style={styles.statusRow}>
                     <View style={[styles.statusIconCircle, { backgroundColor: meta.bgColor }]}>
-                      <Text style={styles.statusIconEmoji}>🍃</Text>
+                      <AppIcon name="eco" size={14} color={meta.color} />
                     </View>
                     <Text style={[styles.statusText, { color: meta.color }]}>{meta.label}</Text>
                   </View>
@@ -134,8 +128,10 @@ export default function SchoolReviewQueueScreen({ navigation }: Props) {
           })}
         </View>
 
-        <View style={{ height: 32 }} />
+        <View style={{ height: 16 }} />
       </ScrollView>
+
+      <SchoolBottomNav navigation={navigation} activeRoute="SchoolReviewQueue" />
     </SafeAreaView>
   );
 }

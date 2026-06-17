@@ -9,7 +9,8 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AppIcon from '../../../components/AppIcon';
-import SchoolBottomNav from '../../../components/SchoolBottomNav';
+import SchoolScreenHeader from '../../../components/SchoolScreenHeader';
+import SchoolBottomNav, { BOTTOM_NAV_HEIGHT } from '../../../components/SchoolBottomNav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -23,23 +24,10 @@ export default function NotificationCenterScreen({ navigation }: Props) {
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle="dark-content" backgroundColor="#F8FAFC" />
       
-      {/* Header */}
-      <View style={styles.header}>
-        <View style={styles.headerBrand}>
-          <View style={styles.headerBrandCircle}>
-            <AppIcon name="eco" size={14} color="#fff" />
-          </View>
-          <Text style={styles.brandName}>EcoChain Admin</Text>
-        </View>
-        <TouchableOpacity
-          style={styles.iconBtn}
-          onPress={() => navigation.navigate('SchoolSettingsProfile')}>
-          <AppIcon name="settings" size={22} color="#334155" />
-        </TouchableOpacity>
-      </View>
+      <SchoolScreenHeader navigation={navigation} showSettings />
 
       <ScrollView
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, { paddingBottom: BOTTOM_NAV_HEIGHT + 20 }]}
         showsVerticalScrollIndicator={false}>
 
         {/* Title Section */}

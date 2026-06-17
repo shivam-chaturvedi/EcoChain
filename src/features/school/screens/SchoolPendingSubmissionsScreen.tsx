@@ -5,12 +5,15 @@ import {
   ScrollView,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
   Modal,
   TextInput,
   Dimensions,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import AppIcon from '../../../components/AppIcon';
+import SchoolScreenHeader from '../../../components/SchoolScreenHeader';
+import SchoolBottomNav, { BOTTOM_NAV_HEIGHT } from '../../../components/SchoolBottomNav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -58,8 +61,10 @@ export default function SchoolPendingSubmissionsScreen({ navigation }: Props) {
   const pendingSubmissions = submissions.filter(s => s.status === 'pending');
 
   return (
-    <SafeAreaView style={styles.safe}>
+    <SafeAreaView style={styles.safe} edges={['top']}>
       <StatusBar barStyle="dark-content" backgroundColor={Colors.surface} />
+
+      <SchoolScreenHeader navigation={navigation} showNotifications showSettings />
 
       {/* ── Reject Submission bottom sheet ── */}
       <Modal
@@ -81,7 +86,7 @@ export default function SchoolPendingSubmissionsScreen({ navigation }: Props) {
                 onPress={() => setRejectModalId(null)}
                 style={styles.sheetCloseBtn}
                 activeOpacity={0.7}>
-                <Text style={styles.sheetCloseText}>✕</Text>
+              <AppIcon name="close" size={20} color="#64748B" />
               </TouchableOpacity>
             </View>
 
@@ -119,7 +124,9 @@ export default function SchoolPendingSubmissionsScreen({ navigation }: Props) {
         </View>
       </Modal>
 
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={[styles.scroll, { paddingBottom: BOTTOM_NAV_HEIGHT + 20 }]}>
 
         {/* ── Title block ── */}
         <View style={styles.titleBlock}>
@@ -140,15 +147,17 @@ export default function SchoolPendingSubmissionsScreen({ navigation }: Props) {
 
           {pendingSubmissions.length === 0 && (
             <View style={styles.emptyState}>
-              <Text style={styles.emptyEmoji}>✅</Text>
+              <AppIcon name="check-circle" size={40} color="#059669" />
               <Text style={styles.emptyTitle}>All reviewed!</Text>
               <Text style={styles.emptySubtitle}>No pending submissions remain.</Text>
             </View>
           )}
         </View>
 
-        <View style={{ height: 32 }} />
+        <View style={{ height: 16 }} />
       </ScrollView>
+
+      <SchoolBottomNav navigation={navigation} activeRoute="SchoolPendingSubmissions" />
     </SafeAreaView>
   );
 }

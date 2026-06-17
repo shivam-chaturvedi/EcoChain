@@ -4,10 +4,13 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
   ScrollView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import AppIcon from '../../../components/AppIcon';
+import SchoolScreenHeader from '../../../components/SchoolScreenHeader';
+import SchoolBottomNav, { BOTTOM_NAV_HEIGHT } from '../../../components/SchoolBottomNav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -22,22 +25,13 @@ export default function SustainabilityGoalsScreen({ navigation }: Props) {
   const [volunteerHours, setVolunteerHours] = useState(40);
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle="dark-content" backgroundColor={Colors.surface} />
-      
-      {/* Header */}
-      <View style={styles.header}>
-        <View style={styles.brandRow}>
-          <Text style={styles.brandIconEmoji}>🌿</Text>
-          <Text style={styles.brandName}>ChonX</Text>
-        </View>
-        <TouchableOpacity style={styles.menuBtn}>
-          <Text style={styles.menuIcon}>≡</Text>
-        </TouchableOpacity>
-      </View>
+
+      <SchoolScreenHeader navigation={navigation} />
 
       <ScrollView
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, { paddingBottom: BOTTOM_NAV_HEIGHT + 90 }]}
         showsVerticalScrollIndicator={false}>
 
         <Text style={styles.title}>Sustainability Goals</Text>
@@ -194,7 +188,7 @@ export default function SustainabilityGoalsScreen({ navigation }: Props) {
         <View style={styles.bottomPad} />
       </ScrollView>
 
-      <View style={styles.footerCtaWrap}>
+      <View style={[styles.footerCtaWrap, { marginBottom: BOTTOM_NAV_HEIGHT }]}>
         <TouchableOpacity
           style={styles.finishBtn}
           onPress={() => navigation.navigate('OnboardingComplete')}
@@ -202,6 +196,8 @@ export default function SustainabilityGoalsScreen({ navigation }: Props) {
           <Text style={styles.finishBtnText}>Finish Setup →</Text>
         </TouchableOpacity>
       </View>
+
+      <SchoolBottomNav navigation={navigation} activeRoute="SustainabilityGoals" />
     </SafeAreaView>
   );
 }

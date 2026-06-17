@@ -4,10 +4,13 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
   ScrollView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import AppIcon from '../../../components/AppIcon';
+import SchoolScreenHeader from '../../../components/SchoolScreenHeader';
+import SchoolBottomNav, { BOTTOM_NAV_HEIGHT } from '../../../components/SchoolBottomNav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -18,17 +21,17 @@ type Props = {
 
 export default function OnboardingCompleteScreen({ navigation }: Props) {
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle="dark-content" backgroundColor="#F4FBF7" />
-      
-      {/* Container simulating the confetti background */}
+
+      <SchoolScreenHeader navigation={navigation} showBrand={false} title="Setup Complete" />
+
       <ScrollView
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, { paddingBottom: BOTTOM_NAV_HEIGHT + 20 }]}
         showsVerticalScrollIndicator={false}>
 
-        {/* Top Check Icon */}
         <View style={styles.topIconCircle}>
-          <Text style={styles.topIconText}>✓</Text>
+          <AppIcon name="check" size={32} color="#fff" />
         </View>
 
         <Text style={styles.title}>Your Eco-Ecosystem{'\n'}is Ready!</Text>
@@ -40,8 +43,7 @@ export default function OnboardingCompleteScreen({ navigation }: Props) {
           {/* Admin Info */}
           <View style={styles.adminRow}>
             <View style={styles.avatarCircle}>
-              {/* Mock avatar */}
-              <Text style={styles.avatarEmoji}>👩🏼</Text>
+              <AppIcon name="person" size={28} color="#64748B" />
             </View>
             <View style={styles.adminTexts}>
               <Text style={styles.fieldLabel}>ADMINISTRATOR</Text>
@@ -91,15 +93,16 @@ export default function OnboardingCompleteScreen({ navigation }: Props) {
 
         {/* Footer Text */}
         <View style={styles.footerRow}>
-          <Text style={styles.footerIcon}>🔒</Text>
+          <AppIcon name="lock" size={16} color="#64748B" />
           <View>
             <Text style={styles.footerSubText}>SECURE CLOUD DEPLOYMENT</Text>
             <Text style={styles.footerMainText}>ONBOARDING COMPLETE</Text>
           </View>
         </View>
 
-        <View style={styles.bottomPad} />
       </ScrollView>
+
+      <SchoolBottomNav navigation={navigation} activeRoute="OnboardingComplete" />
     </SafeAreaView>
   );
 }

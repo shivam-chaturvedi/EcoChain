@@ -12,6 +12,8 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AppIcon from '../../../components/AppIcon';
+import SchoolScreenHeader from '../../../components/SchoolScreenHeader';
+import SchoolBottomNav, { BOTTOM_NAV_HEIGHT } from '../../../components/SchoolBottomNav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -40,29 +42,16 @@ export default function StudentStructureScreen({ navigation }: Props) {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top', 'bottom']}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle="dark-content" backgroundColor={Colors.white} />
 
-      {/* Header */}
-      <View style={styles.header}>
-        <View style={styles.brandRow}>
-          <View style={styles.brandIconCircle}>
-            <AppIcon name="eco" size={16} color="#fff" />
-          </View>
-          <Text style={styles.brandName}>EcoChain</Text>
-        </View>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('SchoolSettingsProfile')}
-          style={styles.menuBtn}>
-          <AppIcon name="settings" size={22} color="#334155" />
-        </TouchableOpacity>
-      </View>
+      <SchoolScreenHeader navigation={navigation} showSettings />
 
       <KeyboardAvoidingView
         style={styles.kavFlex}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <ScrollView
-          contentContainerStyle={styles.scrollContent}
+          contentContainerStyle={[styles.scrollContent, { paddingBottom: BOTTOM_NAV_HEIGHT + 24 }]}
           showsVerticalScrollIndicator={false}>
 
           <Text style={styles.title}>Student Structure</Text>
@@ -146,9 +135,10 @@ export default function StudentStructureScreen({ navigation }: Props) {
             <Text style={styles.continueBtnText}>Continue  →</Text>
           </TouchableOpacity>
 
-          <View style={styles.bottomPad} />
         </ScrollView>
       </KeyboardAvoidingView>
+
+      <SchoolBottomNav navigation={navigation} activeRoute="StudentStructure" />
     </SafeAreaView>
   );
 }
