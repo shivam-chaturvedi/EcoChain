@@ -41,7 +41,7 @@ export default function SchoolRegistrationScreen({ navigation }: Props) {
 
   const handleNextStep = () => {
     if (!canProceed) return;
-    // Navigate to step 2 when built
+    navigation.navigate('AdminProfileSetup');
   };
 
   return (

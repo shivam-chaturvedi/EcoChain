@@ -223,17 +223,17 @@ export default function ClassroomManagementScreen({ navigation }: Props) {
 
       {/* Bottom Nav */}
       <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navItem}>
+        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('AcademyOverview')}>
           <View style={styles.navItemActiveBg}>
             <Text style={styles.navIconActive}>🎛️</Text>
             <Text style={styles.navLabelActive}>Dashboard</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
+        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('SchoolCodeManagement')}>
           <Text style={styles.navIcon}>🛡️</Text>
           <Text style={styles.navLabel}>Initiatives</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
+        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('SchoolAnalytics')}>
           <Text style={styles.navIcon}>📈</Text>
           <Text style={styles.navLabel}>Analytics</Text>
         </TouchableOpacity>

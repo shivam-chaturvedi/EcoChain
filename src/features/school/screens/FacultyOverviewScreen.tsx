@@ -145,7 +145,7 @@ export default function FacultyOverviewScreen({ navigation }: Props) {
                </View>
              </View>
              <TouchableOpacity style={styles.viewProfileBtn}>
-               <Text style={styles.viewProfileBtnText}>View Profile ></Text>
+               <Text style={styles.viewProfileBtnText}>View Profile {'>'}</Text>
              </TouchableOpacity>
           </View>
         </View>
@@ -192,7 +192,7 @@ export default function FacultyOverviewScreen({ navigation }: Props) {
                <Text style={styles.alertText}>3 Approvals Pending</Text>
              </View>
              <TouchableOpacity style={styles.viewProfileBtn}>
-               <Text style={styles.viewProfileBtnText}>View Profile ></Text>
+               <Text style={styles.viewProfileBtnText}>View Profile {'>'}</Text>
              </TouchableOpacity>
           </View>
         </View>
@@ -239,7 +239,7 @@ export default function FacultyOverviewScreen({ navigation }: Props) {
                <Text style={styles.performerText}>Top Performer</Text>
              </View>
              <TouchableOpacity style={styles.viewProfileBtn}>
-               <Text style={styles.viewProfileBtnText}>View Profile ></Text>
+               <Text style={styles.viewProfileBtnText}>View Profile {'>'}</Text>
              </TouchableOpacity>
           </View>
         </View>
@@ -286,7 +286,7 @@ export default function FacultyOverviewScreen({ navigation }: Props) {
                <Text style={styles.loginText}>Recent Login: 2h ago</Text>
              </View>
              <TouchableOpacity style={styles.viewProfileBtn}>
-               <Text style={styles.viewProfileBtnText}>View Profile ></Text>
+               <Text style={styles.viewProfileBtnText}>View Profile {'>'}</Text>
              </TouchableOpacity>
           </View>
         </View>

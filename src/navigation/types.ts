@@ -32,6 +32,9 @@ export type RootStackParamList = {
   OnboardingComplete: undefined;
   AcademyOverview: undefined;
   SchoolAnalytics: undefined;
+  SchoolCodeManagement: undefined;
+  NotificationCenter: undefined;
+  SchoolSettingsProfile: undefined;
   FacultyOverview: undefined;
   StudentsOverview: undefined;
   TeacherDetailProfile: undefined;

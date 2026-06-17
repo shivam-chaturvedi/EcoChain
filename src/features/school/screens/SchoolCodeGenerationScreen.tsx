@@ -13,7 +13,7 @@ import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
 
 type Props = {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'SchoolCode'>;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'SchoolCodeGeneration'>;
 };
 
 export default function SchoolCodeGenerationScreen({ navigation }: Props) {
@@ -61,6 +61,15 @@ export default function SchoolCodeGenerationScreen({ navigation }: Props) {
             activeOpacity={0.8}>
             <Text style={styles.generateBtnText}>Generate Code ✨</Text>
           </TouchableOpacity>
+
+          {schoolCode && (
+            <TouchableOpacity
+              style={styles.continueBtn}
+              onPress={() => navigation.navigate('StudentStructure')}
+              activeOpacity={0.8}>
+              <Text style={styles.continueBtnText}>Continue →</Text>
+            </TouchableOpacity>
+          )}
 
           {/* Generated Code Display */}
           {schoolCode ? (
@@ -188,6 +197,21 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   generateBtnText: {
+    color: Colors.white,
+    fontWeight: '700',
+    fontSize: 16,
+  },
+  continueBtn: {
+    backgroundColor: Colors.primaryDark,
+    paddingHorizontal: 24,
+    paddingVertical: 14,
+    borderRadius: 30,
+    marginBottom: 20,
+    width: '80%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  continueBtnText: {
     color: Colors.white,
     fontWeight: '700',
     fontSize: 16,

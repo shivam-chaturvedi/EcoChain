@@ -144,28 +144,28 @@ export default function AcademyOverviewScreen({ navigation }: Props) {
         {/* Administrator Hub */}
         <Text style={styles.sectionLabel}>ADMINISTRATOR HUB</Text>
         
-        <TouchableOpacity style={styles.hubBtn}>
+        <TouchableOpacity style={styles.hubBtn} onPress={() => navigation.navigate('FacultyOverview')}>
           <View style={styles.hubBtnIconCircle}>
             <Text style={styles.hubBtnIcon}>📁</Text>
           </View>
           <Text style={styles.hubBtnText}>Faculty Overview</Text>
         </TouchableOpacity>
         
-        <TouchableOpacity style={styles.hubBtn}>
+        <TouchableOpacity style={styles.hubBtn} onPress={() => navigation.navigate('StudentsOverview')}>
           <View style={[styles.hubBtnIconCircle, { backgroundColor: '#DBEAFE' }]}>
             <Text style={styles.hubBtnIcon}>📈</Text>
           </View>
           <Text style={styles.hubBtnText}>Student Overview</Text>
         </TouchableOpacity>
         
-        <TouchableOpacity style={styles.hubBtn}>
+        <TouchableOpacity style={styles.hubBtn} onPress={() => navigation.navigate('ClassroomManagement')}>
           <View style={[styles.hubBtnIconCircle, { backgroundColor: '#F3F4F6' }]}>
             <Text style={styles.hubBtnIcon}>🧑‍🤝‍🧑</Text>
           </View>
           <Text style={styles.hubBtnText}>Manage Students & Classes</Text>
         </TouchableOpacity>
         
-        <TouchableOpacity style={styles.hubBtn}>
+        <TouchableOpacity style={styles.hubBtn} onPress={() => navigation.navigate('SchoolCodeManagement')}>
           <View style={[styles.hubBtnIconCircle, { backgroundColor: '#D1FAE5' }]}>
             <Text style={styles.hubBtnIcon}>🔑</Text>
           </View>
@@ -235,17 +235,17 @@ export default function AcademyOverviewScreen({ navigation }: Props) {
 
       {/* Bottom Nav */}
       <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navItem}>
+        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('AcademyOverview')}>
           <View style={styles.navItemActiveBg}>
             <Text style={styles.navIcon}>📊</Text>
             <Text style={styles.navLabelActive}>Dashboard</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
+        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('SchoolCodeManagement')}>
           <Text style={styles.navIcon}>🛡️</Text>
           <Text style={styles.navLabel}>Initiatives</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
+        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('SchoolAnalytics')}>
           <Text style={styles.navIcon}>📈</Text>
           <Text style={styles.navLabel}>Analytics</Text>
         </TouchableOpacity>

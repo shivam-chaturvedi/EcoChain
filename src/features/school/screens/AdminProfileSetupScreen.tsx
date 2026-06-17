@@ -28,6 +28,11 @@ export default function AdminProfileSetupScreen({ navigation }: Props) {
   const [showRolePicker, setShowRolePicker] = useState(false);
 
   const ROLES = ['Principal', 'Vice Principal', 'Sustainability Lead', 'IT Admin'];
+  const canProceed =
+    fullName.trim().length > 0 &&
+    position.trim().length > 0 &&
+    email.trim().length > 0 &&
+    phone.trim().length > 0;
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -158,9 +163,16 @@ export default function AdminProfileSetupScreen({ navigation }: Props) {
                 <Text style={styles.backBtnText}>← Back</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={styles.nextBtn}
+                style={[styles.nextBtn, !canProceed && styles.nextBtnDisabled]}
+                onPress={() => {
+                  if (!canProceed) return;
+                  navigation.navigate('SchoolCodeGeneration');
+                }}
+                disabled={!canProceed}
                 activeOpacity={0.85}>
-                <Text style={styles.nextBtnText}>Next{'\n'}Step →</Text>
+                <Text style={[styles.nextBtnText, !canProceed && styles.nextBtnTextDisabled]}>
+                  Next{'\n'}Step →
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -371,11 +383,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  nextBtnDisabled: {
+    backgroundColor: '#A7F3D0',
+  },
   nextBtnText: {
     color: Colors.white,
     fontWeight: '700',
     fontSize: 14,
     textAlign: 'center',
+  },
+  nextBtnTextDisabled: {
+    color: '#ECFDF5',
   },
   bannerContainer: {
     height: 140,

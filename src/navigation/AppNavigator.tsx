@@ -7,6 +7,19 @@ import LoginScreen from '../features/auth/screens/LoginScreen';
 import LocationSelectionScreen from '../features/onboarding/screens/LocationSelectionScreen';
 import RoleSelectionScreen from '../features/auth/screens/RoleSelectionScreen';
 import SchoolRegistrationScreen from '../features/school/screens/SchoolRegistrationScreen';
+import AdminProfileSetupScreen from '../features/school/screens/AdminProfileSetupScreen';
+import SchoolCodeGenerationScreen from '../features/school/screens/SchoolCodeGenerationScreen';
+import StudentStructureScreen from '../features/school/screens/StudentStructureScreen';
+import SustainabilityGoalsScreen from '../features/school/screens/SustainabilityGoalsScreen';
+import OnboardingCompleteScreen from '../features/school/screens/OnboardingCompleteScreen';
+import AcademyOverviewScreen from '../features/school/screens/AcademyOverviewScreen';
+import SchoolAnalyticsScreen from '../features/school/screens/SchoolAnalyticsScreen';
+import SchoolCodeManagementScreen from '../features/school/screens/SchoolCodeManagementScreen';
+import NotificationCenterScreen from '../features/school/screens/NotificationCenterScreen';
+import SchoolSettingsProfileScreen from '../features/school/screens/SchoolSettingsProfileScreen';
+import FacultyOverviewScreen from '../features/school/screens/FacultyOverviewScreen';
+import StudentsOverviewScreen from '../features/school/screens/StudentsOverviewScreen';
+import ClassroomManagementScreen from '../features/school/screens/ClassroomManagementScreen';
 import PersonalIdentityScreen from '../features/onboarding/screens/PersonalIdentityScreen';
 import SchoolCodeScreen from '../features/auth/screens/SchoolCodeScreen';
 import InterestsSelectionScreen from '../features/onboarding/screens/InterestsSelectionScreen';
@@ -66,6 +79,19 @@ export default function AppNavigator() {
         <Stack.Screen name="LocationSelection" component={LocationSelectionScreen} />
         <Stack.Screen name="RoleSelection" component={RoleSelectionScreen} />
         <Stack.Screen name="SchoolRegistration" component={SchoolRegistrationScreen} />
+        <Stack.Screen name="AdminProfileSetup" component={AdminProfileSetupScreen} />
+        <Stack.Screen name="SchoolCodeGeneration" component={SchoolCodeGenerationScreen} />
+        <Stack.Screen name="StudentStructure" component={StudentStructureScreen} />
+        <Stack.Screen name="SustainabilityGoals" component={SustainabilityGoalsScreen} />
+        <Stack.Screen name="OnboardingComplete" component={OnboardingCompleteScreen} />
+        <Stack.Screen name="AcademyOverview" component={AcademyOverviewScreen} />
+        <Stack.Screen name="SchoolAnalytics" component={SchoolAnalyticsScreen} />
+        <Stack.Screen name="SchoolCodeManagement" component={SchoolCodeManagementScreen} />
+        <Stack.Screen name="NotificationCenter" component={NotificationCenterScreen} />
+        <Stack.Screen name="SchoolSettingsProfile" component={SchoolSettingsProfileScreen} />
+        <Stack.Screen name="FacultyOverview" component={FacultyOverviewScreen} />
+        <Stack.Screen name="StudentsOverview" component={StudentsOverviewScreen} />
+        <Stack.Screen name="ClassroomManagement" component={ClassroomManagementScreen} />
         <Stack.Screen name="PersonalIdentity" component={PersonalIdentityScreen} />
         <Stack.Screen name="SchoolCode" component={SchoolCodeScreen} />
         <Stack.Screen name="InterestsSelection" component={InterestsSelectionScreen} />

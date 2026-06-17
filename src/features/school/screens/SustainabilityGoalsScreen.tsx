@@ -193,6 +193,15 @@ export default function SustainabilityGoalsScreen({ navigation }: Props) {
 
         <View style={styles.bottomPad} />
       </ScrollView>
+
+      <View style={styles.footerCtaWrap}>
+        <TouchableOpacity
+          style={styles.finishBtn}
+          onPress={() => navigation.navigate('OnboardingComplete')}
+          activeOpacity={0.85}>
+          <Text style={styles.finishBtnText}>Finish Setup →</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 }
@@ -234,6 +243,7 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingHorizontal: 20,
     paddingTop: 10,
+    paddingBottom: 120,
   },
   title: {
     fontSize: 26,
@@ -539,6 +549,33 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     overflow: 'hidden',
     backgroundColor: '#E2E8F0',
+    marginBottom: 20,
+  },
+  finishBtn: {
+    backgroundColor: '#10B981',
+    borderRadius: 28,
+    paddingVertical: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 8,
+    shadowColor: '#10B981',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.2,
+    shadowRadius: 12,
+    elevation: 4,
+  },
+  footerCtaWrap: {
+    paddingHorizontal: 20,
+    paddingTop: 12,
+    paddingBottom: 12,
+    backgroundColor: 'rgba(248, 250, 252, 0.96)',
+    borderTopWidth: 1,
+    borderTopColor: '#E2E8F0',
+  },
+  finishBtnText: {
+    color: Colors.white,
+    fontSize: 16,
+    fontWeight: '800',
   },
   bannerImagePlaceholder: {
     flex: 1,
@@ -560,6 +597,6 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
   bottomPad: {
-    height: 40,
+    height: 0,
   },
 });

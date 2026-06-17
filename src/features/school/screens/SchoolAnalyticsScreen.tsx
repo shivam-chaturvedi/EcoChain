@@ -296,15 +296,15 @@ export default function SchoolAnalyticsScreen({ navigation }: Props) {
 
       {/* Bottom Nav */}
       <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navItem}>
+        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('AcademyOverview')}>
           <Text style={styles.navIcon}>📊</Text>
           <Text style={styles.navLabel}>Dashboard</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
+        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('SchoolCodeManagement')}>
           <Text style={styles.navIcon}>🛡️</Text>
           <Text style={styles.navLabel}>Initiatives</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
+        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('SchoolAnalytics')}>
           <View style={styles.navItemActiveBg}>
             <Text style={styles.navIconActive}>📈</Text>
             <Text style={styles.navLabelActive}>Analytics</Text>

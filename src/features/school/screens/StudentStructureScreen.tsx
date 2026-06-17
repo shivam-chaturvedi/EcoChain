@@ -160,6 +160,7 @@ export default function StudentStructureScreen({ navigation }: Props) {
           {/* Continue Button */}
           <TouchableOpacity
             style={styles.continueBtn}
+            onPress={() => navigation.navigate('SustainabilityGoals')}
             activeOpacity={0.8}>
             <Text style={styles.continueBtnText}>CONTINUE →</Text>
           </TouchableOpacity>
