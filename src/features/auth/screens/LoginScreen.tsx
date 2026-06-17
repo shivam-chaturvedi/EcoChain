@@ -11,6 +11,7 @@ import {
   StatusBar,
   Dimensions,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -31,7 +32,7 @@ export default function LoginScreen({ navigation }: Props) {
   };
 
   return (
-    <View style={styles.root}>
+    <SafeAreaView style={styles.root} edges={['top', 'bottom']}>
       <StatusBar barStyle="dark-content" backgroundColor={Colors.backgroundGreen} />
 
       {/* Green tinted scenic header area */}
@@ -120,28 +121,6 @@ export default function LoginScreen({ navigation }: Props) {
               <Text style={styles.loginBtnText}>Log In  →</Text>
             </TouchableOpacity>
 
-            {/* Divider */}
-            <View style={styles.dividerRow}>
-              <View style={styles.dividerLine} />
-              <Text style={styles.dividerText}>OR CONTINUE WITH</Text>
-              <View style={styles.dividerLine} />
-            </View>
-
-            {/* Social login */}
-            <View style={styles.socialRow}>
-              <TouchableOpacity style={styles.socialBtn} activeOpacity={0.8}>
-                <View style={styles.googleIcon}>
-                  <Text style={styles.googleGRed}>G</Text>
-                </View>
-                <Text style={styles.socialBtnText}>Google</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={styles.socialBtn} activeOpacity={0.8}>
-                <Text style={styles.appleIcon}>🍎</Text>
-                <Text style={styles.socialBtnText}>Apple</Text>
-              </TouchableOpacity>
-            </View>
-
             {/* Sign up */}
             <Text style={styles.signupRow}>
               Don't have an account?{' '}
@@ -154,7 +133,7 @@ export default function LoginScreen({ navigation }: Props) {
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -311,64 +290,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: Colors.buttonText,
     letterSpacing: 0.3,
-  },
-
-  // Divider
-  dividerRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  dividerLine: {
-    flex: 1,
-    height: 1,
-    backgroundColor: Colors.divider,
-  },
-  dividerText: {
-    fontSize: 11,
-    fontWeight: '600',
-    color: Colors.textLight,
-    marginHorizontal: 12,
-    letterSpacing: 0.4,
-  },
-
-  // Social
-  socialRow: {
-    flexDirection: 'row',
-    gap: 12,
-    marginBottom: 24,
-  },
-  socialBtn: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 48,
-    backgroundColor: Colors.socialBg,
-    borderWidth: 1.5,
-    borderColor: Colors.socialBorder,
-    borderRadius: 12,
-    gap: 8,
-  },
-  googleIcon: {
-    width: 20,
-    height: 20,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  googleGRed: {
-    fontSize: 16,
-    fontWeight: '800',
-    color: '#4285F4',
-  },
-  appleIcon: {
-    fontSize: 16,
-  },
-  socialBtnText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: Colors.text,
   },
 
   // Sign up

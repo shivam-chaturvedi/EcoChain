@@ -4,10 +4,10 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
   ScrollView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -57,7 +57,7 @@ export default function LocationSelectionScreen({ navigation }: Props) {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['top', 'bottom']}>
       <StatusBar barStyle="dark-content" backgroundColor={Colors.white} />
 
       {/* Header */}
@@ -67,10 +67,6 @@ export default function LocationSelectionScreen({ navigation }: Props) {
             <Text style={styles.brandIconEmoji}>🌿</Text>
           </View>
           <Text style={styles.brandName}>EcoChain</Text>
-        </View>
-        <View style={styles.xpBadge}>
-          <Text style={styles.xpStar}>⭐</Text>
-          <Text style={styles.xpText}>1,250 XP</Text>
         </View>
       </View>
 
@@ -173,24 +169,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: Colors.text,
   },
-  xpBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: Colors.xpBadgeBg,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 20,
-    gap: 4,
-  },
-  xpStar: {
-    fontSize: 13,
-  },
-  xpText: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: Colors.xpBadgeText,
-  },
-
   // Scroll content
   scrollContent: {
     paddingHorizontal: 20,

@@ -74,9 +74,9 @@ function BottomTabBar({
           activeOpacity={0.7}
           onPress={() => t.route && navigation.navigate(t.route as any)}>
           <Text style={tabStyles.tabEmoji}>{t.emoji}</Text>
-          <Text style={[tabStyles.tabLabel, t.active && tabStyles.tabLabelActive]}>
-            {t.label}
-          </Text>
+          {!t.active && (
+            <Text style={tabStyles.tabLabel}>{t.label}</Text>
+          )}
         </TouchableOpacity>
       ))}
     </View>

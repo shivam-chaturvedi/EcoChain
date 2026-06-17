@@ -4,10 +4,12 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
   ScrollView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import AppIcon from '../../../components/AppIcon';
+import SchoolBottomNav from '../../../components/SchoolBottomNav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -18,19 +20,21 @@ type Props = {
 
 export default function SchoolAnalyticsScreen({ navigation }: Props) {
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle="dark-content" backgroundColor="#F8FAFC" />
       
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.headerLeft}>
           <View style={styles.avatarCircle}>
-            <Text style={styles.avatarText}>⚙️</Text>
+            <AppIcon name="bar-chart" size={14} color="#fff" />
           </View>
-          <Text style={styles.brandName}>ChonX</Text>
+          <Text style={styles.brandName}>EcoChain</Text>
         </View>
-        <TouchableOpacity style={styles.iconBtn}>
-          <Text style={styles.headerIcon}>⚙️</Text>
+        <TouchableOpacity
+          style={styles.iconBtn}
+          onPress={() => navigation.navigate('SchoolSettingsProfile')}>
+          <AppIcon name="settings" size={22} color="#334155" />
         </TouchableOpacity>
       </View>
 
@@ -64,7 +68,7 @@ export default function SchoolAnalyticsScreen({ navigation }: Props) {
         <View style={styles.statCard}>
           <View style={styles.statTopRow}>
             <View style={[styles.statIconCircle, { backgroundColor: '#E8F5ED' }]}>
-              <Text style={styles.statIcon}>🛡️</Text>
+              <AppIcon name="eco" size={20} color="#059669" />
             </View>
             <View style={[styles.badge, { backgroundColor: '#E8F5ED' }]}>
               <Text style={[styles.badgeText, { color: '#059669' }]}>+12%</Text>
@@ -77,7 +81,7 @@ export default function SchoolAnalyticsScreen({ navigation }: Props) {
         <View style={styles.statCard}>
           <View style={styles.statTopRow}>
             <View style={[styles.statIconCircle, { backgroundColor: '#DBEAFE' }]}>
-              <Text style={styles.statIcon}>⏱️</Text>
+              <AppIcon name="timer" size={20} color="#1D4ED8" />
             </View>
             <View style={[styles.badge, { backgroundColor: '#F1F5F9' }]}>
               <Text style={[styles.badgeText, { color: '#64748B' }]}>Stable</Text>
@@ -90,7 +94,7 @@ export default function SchoolAnalyticsScreen({ navigation }: Props) {
         <View style={styles.statCard}>
           <View style={styles.statTopRow}>
             <View style={[styles.statIconCircle, { backgroundColor: '#E0F2FE' }]}>
-              <Text style={styles.statIcon}>⭐</Text>
+              <AppIcon name="stars" size={20} color="#0284C7" />
             </View>
             <View style={[styles.badge, { backgroundColor: '#D1FAE5' }]}>
               <Text style={[styles.badgeText, { color: '#059669' }]}>+850 XP</Text>
@@ -103,7 +107,7 @@ export default function SchoolAnalyticsScreen({ navigation }: Props) {
         <View style={styles.statCard}>
           <View style={styles.statTopRow}>
             <View style={[styles.statIconCircle, { backgroundColor: '#F1F5F9' }]}>
-              <Text style={styles.statIcon}>👥</Text>
+              <AppIcon name="group" size={20} color="#475569" />
             </View>
             <View style={[styles.badge, { backgroundColor: '#FEE2E2' }]}>
               <Text style={[styles.badgeText, { color: '#DC2626' }]}>-2%</Text>
@@ -294,23 +298,7 @@ export default function SchoolAnalyticsScreen({ navigation }: Props) {
         <View style={styles.bottomPad} />
       </ScrollView>
 
-      {/* Bottom Nav */}
-      <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('AcademyOverview')}>
-          <Text style={styles.navIcon}>📊</Text>
-          <Text style={styles.navLabel}>Dashboard</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('SchoolCodeManagement')}>
-          <Text style={styles.navIcon}>🛡️</Text>
-          <Text style={styles.navLabel}>Initiatives</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('SchoolAnalytics')}>
-          <View style={styles.navItemActiveBg}>
-            <Text style={styles.navIconActive}>📈</Text>
-            <Text style={styles.navLabelActive}>Analytics</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+      <SchoolBottomNav navigation={navigation} activeRoute="SchoolAnalytics" />
     </SafeAreaView>
   );
 }

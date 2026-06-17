@@ -4,11 +4,11 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
   Dimensions,
   Modal,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -30,10 +30,10 @@ export default function TeacherSubmissionDetailScreen({ navigation }: Props) {
 
   return (
     <View style={styles.root}>
-      <StatusBar barStyle="light-content" backgroundColor="#000" />
+      <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
 
       {/* ── Header ── */}
-      <SafeAreaView style={styles.headerSafe}>
+      <SafeAreaView style={styles.headerSafe} edges={['top']}>
         <View style={styles.header}>
           <TouchableOpacity
             onPress={() => navigation.goBack()}
@@ -62,7 +62,7 @@ export default function TeacherSubmissionDetailScreen({ navigation }: Props) {
       </View>
 
       {/* ── Bottom info card ── */}
-      <View style={styles.bottomSafe}>
+      <SafeAreaView style={styles.bottomSafe} edges={['bottom']}>
         <View style={styles.bottomCard}>
           {/* Left: icon + text */}
           <View style={styles.bottomLeft}>
@@ -85,7 +85,7 @@ export default function TeacherSubmissionDetailScreen({ navigation }: Props) {
         <View style={styles.swipeDismiss}>
           <Text style={styles.swipeDismissText}>∨  Swipe to Dismiss</Text>
         </View>
-      </View>
+      </SafeAreaView>
 
       {/* ── 3-dot menu modal ── */}
       <Modal
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 16,
-    paddingTop: 48,
+    paddingTop: 12,
     paddingBottom: 14,
     gap: 8,
   },
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    paddingBottom: 36,
+    paddingBottom: 16,
     paddingHorizontal: 16,
     gap: 10,
   },

@@ -4,16 +4,13 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
   ScrollView,
-  Dimensions,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
-
-const { width } = Dimensions.get('window');
 
 type Role = 'student' | 'teacher' | 'school';
 
@@ -47,8 +44,6 @@ const ROLES: {
   },
 ];
 
-const AVATAR_COLORS = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4'];
-
 export default function RoleSelectionScreen({ navigation }: Props) {
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
 
@@ -64,16 +59,12 @@ export default function RoleSelectionScreen({ navigation }: Props) {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['top', 'bottom']}>
       <StatusBar barStyle="dark-content" backgroundColor={Colors.white} />
 
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.brandName}>EcoChain</Text>
-        <View style={styles.levelBadge}>
-          <Text style={styles.levelIcon}>🌱</Text>
-          <Text style={styles.levelText}>Lvl 1 Pioneer</Text>
-        </View>
       </View>
 
       <ScrollView
@@ -111,34 +102,6 @@ export default function RoleSelectionScreen({ navigation }: Props) {
           })}
         </View>
 
-        {/* Community banner */}
-        <View style={styles.communityCard}>
-          {/* Scenic background layer */}
-          <View style={styles.communityBgTop} />
-          <View style={styles.communityBgBottom} />
-
-          <View style={styles.communityContent}>
-            {/* Stacked avatars */}
-            <View style={styles.avatarStack}>
-              {AVATAR_COLORS.map((color, i) => (
-                <View
-                  key={i}
-                  style={[
-                    styles.avatar,
-                    { backgroundColor: color, marginLeft: i === 0 ? 0 : -10 },
-                  ]}>
-                  <Text style={styles.avatarEmoji}>👤</Text>
-                </View>
-              ))}
-            </View>
-
-            {/* Text */}
-            <View style={styles.communityText}>
-              <Text style={styles.communityCount}>Join 18,460+</Text>
-              <Text style={styles.communitySubtext}>members saving the planet</Text>
-            </View>
-          </View>
-        </View>
       </ScrollView>
 
       {/* Continue button */}
@@ -182,24 +145,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: Colors.text,
   },
-  levelBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#22C55E',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 20,
-    gap: 4,
-  },
-  levelIcon: {
-    fontSize: 13,
-  },
-  levelText: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: Colors.white,
-  },
-
   // Scroll
   scrollContent: {
     paddingHorizontal: 16,
@@ -290,64 +235,6 @@ const styles = StyleSheet.create({
     height: 10,
     borderRadius: 5,
     backgroundColor: Colors.primaryDark,
-  },
-
-  // Community banner
-  communityCard: {
-    borderRadius: 16,
-    overflow: 'hidden',
-    height: 88,
-    marginBottom: 4,
-    position: 'relative',
-    justifyContent: 'center',
-  },
-  communityBgTop: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: '#1A3D2E',
-  },
-  communityBgBottom: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 44,
-    backgroundColor: '#0D2218',
-    opacity: 0.7,
-  },
-  communityContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    gap: 12,
-  },
-  avatarStack: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  avatar: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 2,
-    borderColor: Colors.white,
-  },
-  avatarEmoji: {
-    fontSize: 14,
-  },
-  communityText: {
-    flex: 1,
-  },
-  communityCount: {
-    fontSize: 15,
-    fontWeight: '700',
-    color: Colors.white,
-  },
-  communitySubtext: {
-    fontSize: 12,
-    color: 'rgba(255,255,255,0.8)',
-    marginTop: 2,
   },
 
   // Bottom

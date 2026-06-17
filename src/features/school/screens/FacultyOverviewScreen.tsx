@@ -4,11 +4,13 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
   ScrollView,
   TextInput,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import AppIcon from '../../../components/AppIcon';
+import SchoolBottomNav, { BOTTOM_NAV_HEIGHT } from '../../../components/SchoolBottomNav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -17,30 +19,72 @@ type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'FacultyOverview'>;
 };
 
+type Teacher = {
+  name: string;
+  subjects: string;
+  level: number;
+  engagement: number;
+  classes: number;
+  approvals: number;
+  students: number;
+  footerType: 'students' | 'alert' | 'topPerformer' | 'login';
+  footerValue?: string;
+};
+
+const TEACHERS: Teacher[] = [
+  {
+    name: 'Dr. Sarah Jenkins',
+    subjects: 'Advanced Ecology • Environmental Law',
+    level: 10, engagement: 94, classes: 4, approvals: 42, students: 186,
+    footerType: 'topPerformer',
+  },
+  {
+    name: 'Markus Aurelius',
+    subjects: 'Sustainable Design • Urban Planning',
+    level: 8, engagement: 78, classes: 2, approvals: 15, students: 112,
+    footerType: 'alert', footerValue: '3 Approvals Pending',
+  },
+  {
+    name: 'Elena Rodriguez',
+    subjects: 'Circular Economics • Ethics',
+    level: 15, engagement: 98, classes: 5, approvals: 82, students: 245,
+    footerType: 'topPerformer',
+  },
+  {
+    name: 'James Wilson',
+    subjects: 'Hydrology • Water Management',
+    level: 5, engagement: 64, classes: 2, approvals: 0, students: 65,
+    footerType: 'login', footerValue: 'Recent Login: 2h ago',
+  },
+];
+
 export default function FacultyOverviewScreen({ navigation }: Props) {
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle="dark-content" backgroundColor="#F8FAFC" />
-      
+
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
-          <Text style={styles.backIcon}>←</Text>
+          <AppIcon name="arrow-back" size={22} color="#006D5B" />
         </TouchableOpacity>
         <View style={styles.headerBrand}>
           <View style={styles.headerLogoBg}>
-             <Text style={styles.headerLogoEmoji}>🌿</Text>
+            <AppIcon name="eco" size={16} color="#fff" />
           </View>
-          <Text style={styles.brandName}>ChonX</Text>
+          <Text style={styles.brandName}>EcoChain</Text>
         </View>
-        <View style={{ width: 40 }} /> {/* Spacer */}
+        <TouchableOpacity
+          onPress={() => navigation.navigate('NotificationCenter')}
+          style={styles.headerIconBtn}>
+          <AppIcon name="notifications" size={22} color="#334155" />
+        </TouchableOpacity>
       </View>
 
       <ScrollView
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, { paddingBottom: BOTTOM_NAV_HEIGHT + 20 }]}
         showsVerticalScrollIndicator={false}>
 
-        {/* Title Section */}
         <Text style={styles.title}>Faculty Overview</Text>
         <Text style={styles.subtitle}>
           School Coordinator Portal • Managing 128 active faculty members.
@@ -48,7 +92,7 @@ export default function FacultyOverviewScreen({ navigation }: Props) {
 
         {/* Search Bar */}
         <View style={styles.searchContainer}>
-          <Text style={styles.searchIcon}>🔍</Text>
+          <AppIcon name="search" size={18} color="#94A3B8" />
           <TextInput
             style={styles.searchInput}
             placeholder="Search by name, class, or status..."
@@ -59,306 +103,151 @@ export default function FacultyOverviewScreen({ navigation }: Props) {
         {/* Summary Cards */}
         <View style={styles.summaryCard}>
           <View style={styles.summaryTopRow}>
-             <View style={styles.summaryIconCircle}>
-                <Text style={styles.summaryIcon}>🛡️</Text>
-             </View>
-             <Text style={styles.summaryLabel}>APPROVALS PENDING</Text>
+            <View style={[styles.summaryIconCircle, { backgroundColor: '#FEE2E2' }]}>
+              <AppIcon name="pending-actions" size={16} color="#DC2626" />
+            </View>
+            <Text style={styles.summaryLabel}>APPROVALS PENDING</Text>
           </View>
           <Text style={styles.summaryValue}>14</Text>
           <View style={styles.progressBarBg}>
-             <View style={[styles.progressBarFill, { width: '40%' }]} />
+            <View style={[styles.progressBarFill, { width: '40%' }]} />
           </View>
         </View>
 
         <View style={styles.summaryCard}>
           <View style={styles.summaryTopRow}>
-             <View style={[styles.summaryIconCircle, { backgroundColor: '#D1FAE5' }]}>
-                <Text style={styles.summaryIcon}>📈</Text>
-             </View>
-             <Text style={styles.summaryLabel}>AVERAGE ENGAGEMENT</Text>
+            <View style={[styles.summaryIconCircle, { backgroundColor: '#D1FAE5' }]}>
+              <AppIcon name="trending-up" size={16} color="#059669" />
+            </View>
+            <Text style={styles.summaryLabel}>AVERAGE ENGAGEMENT</Text>
           </View>
-          <Text style={styles.summaryValue}>82 <Text style={styles.summaryValueSub}>/100</Text></Text>
+          <Text style={styles.summaryValue}>
+            82 <Text style={styles.summaryValueSub}>/100</Text>
+          </Text>
           <View style={styles.segmentsRow}>
-             <View style={styles.segmentActive} />
-             <View style={styles.segmentActive} />
-             <View style={styles.segmentActive} />
-             <View style={styles.segmentActive} />
-             <View style={styles.segmentInactive} />
+            <View style={styles.segmentActive} />
+            <View style={styles.segmentActive} />
+            <View style={styles.segmentActive} />
+            <View style={styles.segmentActive} />
+            <View style={styles.segmentInactive} />
           </View>
         </View>
 
         <View style={styles.summaryCard}>
           <View style={styles.summaryTopRow}>
-             <View style={[styles.summaryIconCircle, { backgroundColor: '#E0F2FE' }]}>
-                <Text style={styles.summaryIcon}>👥</Text>
-             </View>
-             <Text style={styles.summaryLabel}>TOTAL STUDENTS</Text>
+            <View style={[styles.summaryIconCircle, { backgroundColor: '#E0F2FE' }]}>
+              <AppIcon name="group" size={16} color="#0284C7" />
+            </View>
+            <Text style={styles.summaryLabel}>TOTAL STUDENTS</Text>
           </View>
           <Text style={styles.summaryValue}>3,240</Text>
           <Text style={styles.summaryChangeText}>+12% from last semester</Text>
         </View>
 
-        {/* List of Teachers */}
-        {/* Teacher 1 */}
-        <View style={styles.teacherCard}>
-          <View style={styles.teacherHeaderRow}>
-             <View style={styles.avatarLarge}>
-               <Text style={styles.avatarEmoji}>👩🏾‍🏫</Text>
-             </View>
-             <View style={styles.levelBadge}>
-               <Text style={styles.levelBadgeText}>LEVEL 10</Text>
-             </View>
-          </View>
-          
-          <View style={styles.nameEngRow}>
-             <Text style={styles.teacherName}>Dr. Sarah Jenkins</Text>
-             <View style={styles.engScoreBox}>
-               <Text style={styles.engScoreValue}>94%</Text>
-               <Text style={styles.engScoreLabel}>ENGAGEMENT</Text>
-             </View>
-          </View>
-          
-          <Text style={styles.subjectsText}>Advanced Ecology • Environmental Law</Text>
-          
-          <View style={styles.statsRow}>
-            <View style={styles.statPill}>
-              <Text style={styles.statPillValue}>4</Text>
-              <Text style={styles.statPillLabel}>CLASSES</Text>
+        {/* Teacher Cards */}
+        {TEACHERS.map(t => (
+          <View key={t.name} style={styles.teacherCard}>
+            <View style={styles.teacherHeaderRow}>
+              <View style={styles.avatarLarge}>
+                <AppIcon name="person" size={32} color="#64748B" />
+              </View>
+              <View style={styles.levelBadge}>
+                <Text style={styles.levelBadgeText}>LEVEL {t.level}</Text>
+              </View>
             </View>
-            <View style={styles.statPill}>
-              <Text style={styles.statPillValue}>42</Text>
-              <Text style={styles.statPillLabel}>APPROVALS</Text>
-            </View>
-            <View style={styles.statPill}>
-              <Text style={styles.statPillValue}>186</Text>
-              <Text style={styles.statPillLabel}>STUDENTS</Text>
-            </View>
-          </View>
-          
-          <View style={styles.teacherFooterRow}>
-             <View style={styles.mockAvatarsRow}>
-               <View style={[styles.mockSmallAvatar, { backgroundColor: '#CBD5E1' }]} />
-               <View style={[styles.mockSmallAvatar, { backgroundColor: '#94A3B8', marginLeft: -8 }]} />
-               <View style={[styles.mockSmallAvatar, { backgroundColor: '#64748B', marginLeft: -8 }]} />
-               <View style={[styles.mockSmallAvatarPlus, { marginLeft: -8 }]}>
-                 <Text style={styles.mockSmallAvatarPlusText}>+</Text>
-               </View>
-             </View>
-             <TouchableOpacity style={styles.viewProfileBtn}>
-               <Text style={styles.viewProfileBtnText}>View Profile {'>'}</Text>
-             </TouchableOpacity>
-          </View>
-        </View>
 
-        {/* Teacher 2 */}
-        <View style={styles.teacherCard}>
-          <View style={styles.teacherHeaderRow}>
-             <View style={styles.avatarLarge}>
-               <Text style={styles.avatarEmoji}>👨🏻‍💼</Text>
-             </View>
-             <View style={styles.levelBadge}>
-               <Text style={styles.levelBadgeText}>LEVEL 8</Text>
-             </View>
-          </View>
-          
-          <View style={styles.nameEngRow}>
-             <Text style={styles.teacherName}>Markus Aurelius</Text>
-             <View style={styles.engScoreBox}>
-               <Text style={styles.engScoreValue}>78%</Text>
-               <Text style={styles.engScoreLabel}>ENGAGEMENT</Text>
-             </View>
-          </View>
-          
-          <Text style={styles.subjectsText}>Sustainable Design • Urban Planning</Text>
-          
-          <View style={styles.statsRow}>
-            <View style={styles.statPill}>
-              <Text style={styles.statPillValue}>2</Text>
-              <Text style={styles.statPillLabel}>CLASSES</Text>
+            <View style={styles.nameEngRow}>
+              <Text style={styles.teacherName}>{t.name}</Text>
+              <View style={styles.engScoreBox}>
+                <Text style={styles.engScoreValue}>{t.engagement}%</Text>
+                <Text style={styles.engScoreLabel}>ENGAGEMENT</Text>
+              </View>
             </View>
-            <View style={styles.statPill}>
-              <Text style={styles.statPillValue}>15</Text>
-              <Text style={styles.statPillLabel}>APPROVALS</Text>
-            </View>
-            <View style={styles.statPill}>
-              <Text style={styles.statPillValue}>112</Text>
-              <Text style={styles.statPillLabel}>STUDENTS</Text>
-            </View>
-          </View>
-          
-          <View style={styles.teacherFooterRow}>
-             <View style={styles.alertRow}>
-               <Text style={styles.alertIcon}>⚠️</Text>
-               <Text style={styles.alertText}>3 Approvals Pending</Text>
-             </View>
-             <TouchableOpacity style={styles.viewProfileBtn}>
-               <Text style={styles.viewProfileBtnText}>View Profile {'>'}</Text>
-             </TouchableOpacity>
-          </View>
-        </View>
 
-        {/* Teacher 3 */}
-        <View style={styles.teacherCard}>
-          <View style={styles.teacherHeaderRow}>
-             <View style={styles.avatarLarge}>
-               <Text style={styles.avatarEmoji}>👩🏽‍🏫</Text>
-             </View>
-             <View style={styles.levelBadge}>
-               <Text style={styles.levelBadgeText}>LEVEL 15</Text>
-             </View>
-          </View>
-          
-          <View style={styles.nameEngRow}>
-             <Text style={styles.teacherName}>Elena Rodriguez</Text>
-             <View style={styles.engScoreBox}>
-               <Text style={styles.engScoreValue}>98%</Text>
-               <Text style={styles.engScoreLabel}>ENGAGEMENT</Text>
-             </View>
-          </View>
-          
-          <Text style={styles.subjectsText}>Circular Economics • Ethics</Text>
-          
-          <View style={styles.statsRow}>
-            <View style={styles.statPill}>
-              <Text style={styles.statPillValue}>5</Text>
-              <Text style={styles.statPillLabel}>CLASSES</Text>
-            </View>
-            <View style={styles.statPill}>
-              <Text style={styles.statPillValue}>82</Text>
-              <Text style={styles.statPillLabel}>APPROVALS</Text>
-            </View>
-            <View style={styles.statPill}>
-              <Text style={styles.statPillValue}>245</Text>
-              <Text style={styles.statPillLabel}>STUDENTS</Text>
-            </View>
-          </View>
-          
-          <View style={styles.teacherFooterRow}>
-             <View style={styles.performerRow}>
-               <Text style={styles.performerIcon}>⭐</Text>
-               <Text style={styles.performerText}>Top Performer</Text>
-             </View>
-             <TouchableOpacity style={styles.viewProfileBtn}>
-               <Text style={styles.viewProfileBtnText}>View Profile {'>'}</Text>
-             </TouchableOpacity>
-          </View>
-        </View>
+            <Text style={styles.subjectsText}>{t.subjects}</Text>
 
-        {/* Teacher 4 */}
-        <View style={styles.teacherCard}>
-          <View style={styles.teacherHeaderRow}>
-             <View style={styles.avatarLarge}>
-               <Text style={styles.avatarEmoji}>👨🏽‍🏫</Text>
-             </View>
-             <View style={styles.levelBadge}>
-               <Text style={styles.levelBadgeText}>LEVEL 5</Text>
-             </View>
-          </View>
-          
-          <View style={styles.nameEngRow}>
-             <Text style={styles.teacherName}>James Wilson</Text>
-             <View style={styles.engScoreBox}>
-               <Text style={styles.engScoreValue}>64%</Text>
-               <Text style={styles.engScoreLabel}>ENGAGEMENT</Text>
-             </View>
-          </View>
-          
-          <Text style={styles.subjectsText}>Hydrology • Water Management</Text>
-          
-          <View style={styles.statsRow}>
-            <View style={styles.statPill}>
-              <Text style={styles.statPillValue}>2</Text>
-              <Text style={styles.statPillLabel}>CLASSES</Text>
+            <View style={styles.statsRow}>
+              <View style={styles.statPill}>
+                <Text style={styles.statPillValue}>{t.classes}</Text>
+                <Text style={styles.statPillLabel}>CLASSES</Text>
+              </View>
+              <View style={styles.statPill}>
+                <Text style={styles.statPillValue}>{t.approvals}</Text>
+                <Text style={styles.statPillLabel}>APPROVALS</Text>
+              </View>
+              <View style={styles.statPill}>
+                <Text style={styles.statPillValue}>{t.students}</Text>
+                <Text style={styles.statPillLabel}>STUDENTS</Text>
+              </View>
             </View>
-            <View style={styles.statPill}>
-              <Text style={styles.statPillValue}>0</Text>
-              <Text style={styles.statPillLabel}>APPROVALS</Text>
-            </View>
-            <View style={styles.statPill}>
-              <Text style={styles.statPillValue}>65</Text>
-              <Text style={styles.statPillLabel}>STUDENTS</Text>
-            </View>
-          </View>
-          
-          <View style={styles.teacherFooterRow}>
-             <View style={styles.loginRow}>
-               <Text style={styles.loginIcon}>🕒</Text>
-               <Text style={styles.loginText}>Recent Login: 2h ago</Text>
-             </View>
-             <TouchableOpacity style={styles.viewProfileBtn}>
-               <Text style={styles.viewProfileBtnText}>View Profile {'>'}</Text>
-             </TouchableOpacity>
-          </View>
-        </View>
 
-        {/* Load More */}
+            <View style={styles.teacherFooterRow}>
+              {t.footerType === 'topPerformer' && (
+                <View style={styles.badgeRow}>
+                  <AppIcon name="star" size={14} color="#D97706" />
+                  <Text style={styles.performerText}> Top Performer</Text>
+                </View>
+              )}
+              {t.footerType === 'alert' && (
+                <View style={styles.badgeRow}>
+                  <AppIcon name="warning" size={14} color="#DC2626" />
+                  <Text style={styles.alertText}> {t.footerValue}</Text>
+                </View>
+              )}
+              {t.footerType === 'login' && (
+                <View style={styles.badgeRow}>
+                  <AppIcon name="access-time" size={14} color="#64748B" />
+                  <Text style={styles.loginText}> {t.footerValue}</Text>
+                </View>
+              )}
+              {t.footerType === 'students' && <View />}
+              <TouchableOpacity
+                style={styles.viewProfileBtn}
+                onPress={() => navigation.navigate('TeacherDetailProfile')}>
+                <Text style={styles.viewProfileBtnText}>View Profile</Text>
+                <AppIcon name="chevron-right" size={16} color="#fff" />
+              </TouchableOpacity>
+            </View>
+          </View>
+        ))}
+
         <TouchableOpacity style={styles.loadMoreBtn}>
           <Text style={styles.loadMoreText}>Load More Teachers (124 remaining)</Text>
         </TouchableOpacity>
-
-        <View style={styles.bottomPad} />
       </ScrollView>
+
+      <SchoolBottomNav navigation={navigation} activeRoute="AcademyOverview" />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#F8FAFC',
-  },
+  safeArea: { flex: 1, backgroundColor: '#F8FAFC' },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
     paddingVertical: 14,
-    backgroundColor: '#F8FAFC',
+    backgroundColor: Colors.white,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.border,
   },
-  backBtn: {
-    padding: 8,
-  },
-  backIcon: {
-    fontSize: 24,
-    color: '#006D5B',
-  },
-  headerBrand: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
+  backBtn: { padding: 4 },
+  headerBrand: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   headerLogoBg: {
-    backgroundColor: '#002B20',
     width: 32,
     height: 32,
-    borderRadius: 8,
+    borderRadius: 16,
+    backgroundColor: '#059669',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  headerLogoEmoji: {
-    fontSize: 16,
-  },
-  brandName: {
-    fontSize: 20,
-    fontWeight: '800',
-    color: '#004D40',
-  },
-  scrollContent: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: '800',
-    color: '#002B36',
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 13,
-    color: '#475569',
-    lineHeight: 20,
-    marginBottom: 20,
-  },
+  brandName: { fontSize: 18, fontWeight: '700', color: '#004D40' },
+  headerIconBtn: { padding: 4 },
+  scrollContent: { paddingHorizontal: 20, paddingTop: 20 },
+  title: { fontSize: 28, fontWeight: '800', color: '#002B36', marginBottom: 8 },
+  subtitle: { fontSize: 13, color: '#475569', lineHeight: 20, marginBottom: 20 },
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -367,51 +256,31 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     height: 48,
     marginBottom: 24,
-    shadowColor: Colors.cardShadow,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.05,
-    shadowRadius: 10,
-    elevation: 2,
     borderWidth: 1,
     borderColor: '#E2E8F0',
+    gap: 8,
   },
-  searchIcon: {
-    fontSize: 16,
-    marginRight: 12,
-  },
-  searchInput: {
-    flex: 1,
-    fontSize: 14,
-    color: '#1E293B',
-    height: '100%',
-  },
+  searchInput: { flex: 1, fontSize: 14, color: '#1E293B', height: '100%' },
   summaryCard: {
     backgroundColor: Colors.white,
     borderRadius: 20,
     padding: 20,
     marginBottom: 16,
-    shadowColor: Colors.cardShadow,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.03,
-    shadowRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.04,
+    shadowRadius: 8,
     elevation: 2,
   },
-  summaryTopRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
+  summaryTopRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 16 },
   summaryIconCircle: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
     backgroundColor: '#E8F5ED',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 10,
-  },
-  summaryIcon: {
-    fontSize: 14,
+    marginRight: 12,
   },
   summaryLabel: {
     fontSize: 10,
@@ -419,57 +288,23 @@ const styles = StyleSheet.create({
     color: '#64748B',
     letterSpacing: 1,
   },
-  summaryValue: {
-    fontSize: 26,
-    fontWeight: '800',
-    color: '#002B36',
-    marginBottom: 12,
-  },
-  summaryValueSub: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#94A3B8',
-  },
-  progressBarBg: {
-    height: 4,
-    backgroundColor: '#E2E8F0',
-    borderRadius: 2,
-    width: '100%',
-  },
-  progressBarFill: {
-    height: '100%',
-    backgroundColor: '#059669',
-    borderRadius: 2,
-  },
-  segmentsRow: {
-    flexDirection: 'row',
-    gap: 4,
-    height: 4,
-  },
-  segmentActive: {
-    flex: 1,
-    backgroundColor: '#059669',
-    borderRadius: 2,
-  },
-  segmentInactive: {
-    flex: 1,
-    backgroundColor: '#E2E8F0',
-    borderRadius: 2,
-  },
-  summaryChangeText: {
-    fontSize: 11,
-    fontWeight: '600',
-    color: '#64748B',
-  },
+  summaryValue: { fontSize: 26, fontWeight: '800', color: '#002B36', marginBottom: 12 },
+  summaryValueSub: { fontSize: 14, fontWeight: '600', color: '#94A3B8' },
+  progressBarBg: { height: 4, backgroundColor: '#E2E8F0', borderRadius: 2 },
+  progressBarFill: { height: '100%', backgroundColor: '#059669', borderRadius: 2 },
+  segmentsRow: { flexDirection: 'row', gap: 4, height: 4 },
+  segmentActive: { flex: 1, backgroundColor: '#059669', borderRadius: 2 },
+  segmentInactive: { flex: 1, backgroundColor: '#E2E8F0', borderRadius: 2 },
+  summaryChangeText: { fontSize: 11, fontWeight: '600', color: '#64748B' },
   teacherCard: {
     backgroundColor: Colors.white,
     borderRadius: 24,
     padding: 20,
     marginBottom: 16,
-    shadowColor: Colors.cardShadow,
-    shadowOffset: { width: 0, height: 4 },
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.04,
-    shadowRadius: 12,
+    shadowRadius: 8,
     elevation: 2,
   },
   teacherHeaderRow: {
@@ -485,9 +320,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#F1F5F9',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  avatarEmoji: {
-    fontSize: 40,
   },
   levelBadge: {
     backgroundColor: '#059669',
@@ -507,20 +339,9 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     marginBottom: 6,
   },
-  teacherName: {
-    fontSize: 18,
-    fontWeight: '800',
-    color: '#1E293B',
-    flex: 1,
-  },
-  engScoreBox: {
-    alignItems: 'flex-end',
-  },
-  engScoreValue: {
-    fontSize: 16,
-    fontWeight: '800',
-    color: '#0F766E',
-  },
+  teacherName: { fontSize: 17, fontWeight: '800', color: '#1E293B', flex: 1 },
+  engScoreBox: { alignItems: 'flex-end' },
+  engScoreValue: { fontSize: 15, fontWeight: '800', color: '#0F766E' },
   engScoreLabel: {
     fontSize: 8,
     fontWeight: '700',
@@ -533,11 +354,7 @@ const styles = StyleSheet.create({
     color: '#0F766E',
     marginBottom: 20,
   },
-  statsRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 24,
-  },
+  statsRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 },
   statPill: {
     alignItems: 'center',
     backgroundColor: '#F8FAFC',
@@ -547,12 +364,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 4,
   },
-  statPillValue: {
-    fontSize: 16,
-    fontWeight: '800',
-    color: '#1E293B',
-    marginBottom: 2,
-  },
+  statPillValue: { fontSize: 16, fontWeight: '800', color: '#1E293B', marginBottom: 2 },
   statPillLabel: {
     fontSize: 8,
     fontWeight: '700',
@@ -564,97 +376,27 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  mockAvatarsRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  mockSmallAvatar: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    borderWidth: 2,
-    borderColor: Colors.white,
-  },
-  mockSmallAvatarPlus: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: '#F1F5F9',
-    borderWidth: 2,
-    borderColor: Colors.white,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  mockSmallAvatarPlusText: {
-    fontSize: 10,
-    fontWeight: '700',
-    color: '#64748B',
-  },
-  alertRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  alertIcon: {
-    fontSize: 12,
-    marginRight: 6,
-  },
-  alertText: {
-    fontSize: 11,
-    fontWeight: '700',
-    color: '#DC2626',
-  },
-  performerRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  performerIcon: {
-    fontSize: 12,
-    marginRight: 6,
-  },
-  performerText: {
-    fontSize: 11,
-    fontWeight: '700',
-    color: '#059669',
-  },
-  loginRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  loginIcon: {
-    fontSize: 12,
-    marginRight: 6,
-    color: '#64748B',
-  },
-  loginText: {
-    fontSize: 10,
-    fontWeight: '600',
-    color: '#64748B',
-  },
+  badgeRow: { flexDirection: 'row', alignItems: 'center' },
+  performerText: { fontSize: 11, fontWeight: '700', color: '#059669' },
+  alertText: { fontSize: 11, fontWeight: '700', color: '#DC2626' },
+  loginText: { fontSize: 10, fontWeight: '600', color: '#64748B' },
   viewProfileBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: '#004D40',
-    paddingHorizontal: 16,
-    paddingVertical: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 9,
     borderRadius: 20,
+    gap: 2,
   },
-  viewProfileBtnText: {
-    color: Colors.white,
-    fontSize: 12,
-    fontWeight: '700',
-  },
+  viewProfileBtnText: { color: Colors.white, fontSize: 12, fontWeight: '700' },
   loadMoreBtn: {
     backgroundColor: '#E2E8F0',
     paddingVertical: 16,
     borderRadius: 24,
     alignItems: 'center',
-    marginTop: 8,
-    marginBottom: 20,
+    marginTop: 4,
+    marginBottom: 16,
   },
-  loadMoreText: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: '#1E293B',
-  },
-  bottomPad: {
-    height: 40,
-  },
+  loadMoreText: { fontSize: 13, fontWeight: '700', color: '#1E293B' },
 });

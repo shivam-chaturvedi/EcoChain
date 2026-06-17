@@ -4,10 +4,12 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
   ScrollView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import AppIcon from '../../../components/AppIcon';
+import SchoolBottomNav from '../../../components/SchoolBottomNav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -18,17 +20,21 @@ type Props = {
 
 export default function ClassroomManagementScreen({ navigation }: Props) {
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle="dark-content" backgroundColor="#F8FAFC" />
       
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.headerBrand}>
-          <Text style={styles.headerBrandIcon}>eco</Text>
-          <Text style={styles.brandName}>EcoSchools Admin</Text>
+          <View style={styles.headerBrandCircle}>
+            <AppIcon name="eco" size={14} color="#fff" />
+          </View>
+          <Text style={styles.brandName}>EcoChain Admin</Text>
         </View>
-        <TouchableOpacity style={styles.iconBtn}>
-          <Text style={styles.headerIcon}>🔔</Text>
+        <TouchableOpacity
+          style={styles.iconBtn}
+          onPress={() => navigation.navigate('NotificationCenter')}>
+          <AppIcon name="notifications" size={22} color="#334155" />
         </TouchableOpacity>
       </View>
 
@@ -58,7 +64,7 @@ export default function ClassroomManagementScreen({ navigation }: Props) {
         <View style={styles.analyticsCard}>
           <View style={styles.analyticsHeader}>
             <Text style={styles.analyticsTitle}>Class Analytics</Text>
-            <Text style={styles.analyticsIcon}>📊</Text>
+            <AppIcon name="bar-chart" size={18} color="#64748B" />
           </View>
 
           <View style={styles.chartContainer}>
@@ -100,7 +106,7 @@ export default function ClassroomManagementScreen({ navigation }: Props) {
           
           <View style={styles.teacherInfoRow}>
             <View style={styles.teacherAvatar}>
-               <Text style={styles.teacherAvatarEmoji}>👩🏼‍🏫</Text>
+              <AppIcon name="person" size={18} color="#334155" />
             </View>
             <View>
                <Text style={styles.teacherLabel}>TEACHER ASSIGNED</Text>
@@ -110,7 +116,7 @@ export default function ClassroomManagementScreen({ navigation }: Props) {
 
           <View style={styles.classFooterRow}>
             <View style={styles.studentCountRow}>
-              <Text style={styles.studentCountIcon}>👥</Text>
+              <AppIcon name="group" size={14} color="#64748B" />
               <Text style={styles.studentCountText}>28 Students</Text>
             </View>
             <TouchableOpacity>
@@ -133,7 +139,7 @@ export default function ClassroomManagementScreen({ navigation }: Props) {
           
           <View style={styles.teacherInfoRow}>
             <View style={styles.teacherAvatar}>
-               <Text style={styles.teacherAvatarEmoji}>👨🏻‍🏫</Text>
+              <AppIcon name="person" size={18} color="#334155" />
             </View>
             <View>
                <Text style={styles.teacherLabel}>TEACHER ASSIGNED</Text>
@@ -143,7 +149,7 @@ export default function ClassroomManagementScreen({ navigation }: Props) {
 
           <View style={styles.classFooterRow}>
             <View style={styles.studentCountRow}>
-              <Text style={styles.studentCountIcon}>👥</Text>
+              <AppIcon name="group" size={14} color="#64748B" />
               <Text style={styles.studentCountText}>32 Students</Text>
             </View>
             <TouchableOpacity>
@@ -166,7 +172,7 @@ export default function ClassroomManagementScreen({ navigation }: Props) {
           
           <View style={styles.teacherInfoRow}>
             <View style={styles.teacherAvatarMissing}>
-               <Text style={styles.missingIcon}>✕</Text>
+              <AppIcon name="person-off" size={16} color="#EF4444" />
             </View>
             <View>
                <Text style={styles.teacherLabel}>TEACHER ASSIGNED</Text>
@@ -176,7 +182,7 @@ export default function ClassroomManagementScreen({ navigation }: Props) {
 
           <View style={styles.classFooterRow}>
             <View style={styles.studentCountRow}>
-              <Text style={styles.studentCountIcon}>👥</Text>
+              <AppIcon name="group" size={14} color="#64748B" />
               <Text style={styles.studentCountText}>24 Students</Text>
             </View>
             <TouchableOpacity style={styles.assignNowBtn}>
@@ -199,7 +205,7 @@ export default function ClassroomManagementScreen({ navigation }: Props) {
           
           <View style={styles.teacherInfoRow}>
             <View style={styles.teacherAvatar}>
-               <Text style={styles.teacherAvatarEmoji}>👩🏾‍🏫</Text>
+              <AppIcon name="person" size={18} color="#334155" />
             </View>
             <View>
                <Text style={styles.teacherLabel}>TEACHER ASSIGNED</Text>
@@ -209,7 +215,7 @@ export default function ClassroomManagementScreen({ navigation }: Props) {
 
           <View style={styles.classFooterRow}>
             <View style={styles.studentCountRow}>
-              <Text style={styles.studentCountIcon}>👥</Text>
+              <AppIcon name="group" size={14} color="#64748B" />
               <Text style={styles.studentCountText}>19 Students</Text>
             </View>
             <TouchableOpacity>
@@ -221,23 +227,7 @@ export default function ClassroomManagementScreen({ navigation }: Props) {
         <View style={styles.bottomPad} />
       </ScrollView>
 
-      {/* Bottom Nav */}
-      <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('AcademyOverview')}>
-          <View style={styles.navItemActiveBg}>
-            <Text style={styles.navIconActive}>🎛️</Text>
-            <Text style={styles.navLabelActive}>Dashboard</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('SchoolCodeManagement')}>
-          <Text style={styles.navIcon}>🛡️</Text>
-          <Text style={styles.navLabel}>Initiatives</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('SchoolAnalytics')}>
-          <Text style={styles.navIcon}>📈</Text>
-          <Text style={styles.navLabel}>Analytics</Text>
-        </TouchableOpacity>
-      </View>
+      <SchoolBottomNav navigation={navigation} activeRoute="ClassroomManagement" />
     </SafeAreaView>
   );
 }
@@ -259,11 +249,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  headerBrandIcon: {
-    fontSize: 16,
-    color: '#059669',
-    fontWeight: '800',
-    marginRight: 4,
+  headerBrandCircle: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: '#059669',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 8,
   },
   brandName: {
     fontSize: 16,
@@ -272,10 +265,6 @@ const styles = StyleSheet.create({
   },
   iconBtn: {
     padding: 8,
-  },
-  headerIcon: {
-    fontSize: 18,
-    color: '#334155',
   },
   scrollContent: {
     paddingHorizontal: 20,

@@ -4,10 +4,12 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
   ScrollView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import AppIcon from '../../../components/AppIcon';
+import SchoolBottomNav from '../../../components/SchoolBottomNav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -18,20 +20,21 @@ type Props = {
 
 export default function NotificationCenterScreen({ navigation }: Props) {
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle="dark-content" backgroundColor="#F8FAFC" />
       
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.headerBrand}>
-          <Text style={styles.headerBrandIcon}>eco</Text>
-          <Text style={styles.brandName}>EcoSchools Admin</Text>
-        </View>
-        <TouchableOpacity style={styles.iconBtn}>
-          <View style={styles.bellBadgeContainer}>
-             <Text style={styles.headerIcon}>🔔</Text>
-             <View style={styles.redDot} />
+          <View style={styles.headerBrandCircle}>
+            <AppIcon name="eco" size={14} color="#fff" />
           </View>
+          <Text style={styles.brandName}>EcoChain Admin</Text>
+        </View>
+        <TouchableOpacity
+          style={styles.iconBtn}
+          onPress={() => navigation.navigate('SchoolSettingsProfile')}>
+          <AppIcon name="settings" size={22} color="#334155" />
         </TouchableOpacity>
       </View>
 
@@ -63,7 +66,7 @@ export default function NotificationCenterScreen({ navigation }: Props) {
         {/* Item 1 */}
         <View style={styles.notifCard}>
           <View style={styles.notifIconContainerBlue}>
-            <Text style={styles.notifIconBlue}>⚙️</Text>
+            <AppIcon name="security" size={18} color="#1D4ED8" />
           </View>
           <View style={styles.notifContent}>
             <View style={styles.notifHeaderRow}>
@@ -80,7 +83,7 @@ export default function NotificationCenterScreen({ navigation }: Props) {
         {/* Item 2 */}
         <View style={styles.notifCard}>
           <View style={styles.notifIconContainerGreen}>
-            <Text style={styles.notifIconGreen}>✓</Text>
+            <AppIcon name="emoji-events" size={18} color="#059669" />
           </View>
           <View style={styles.notifContent}>
             <View style={styles.notifHeaderRow}>
@@ -97,7 +100,7 @@ export default function NotificationCenterScreen({ navigation }: Props) {
         {/* Item 3 */}
         <View style={styles.notifCard}>
           <View style={styles.notifIconContainerTeal}>
-            <Text style={styles.notifIconTeal}>🎖️</Text>
+            <AppIcon name="military-tech" size={18} color="#0D9488" />
           </View>
           <View style={styles.notifContent}>
             <View style={styles.notifHeaderRow}>
@@ -114,7 +117,7 @@ export default function NotificationCenterScreen({ navigation }: Props) {
         {/* Item 4 */}
         <View style={styles.notifCard}>
           <View style={styles.notifIconContainerLightGreen}>
-            <Text style={styles.notifIconLightGreen}>🪴</Text>
+            <AppIcon name="eco" size={18} color="#059669" />
           </View>
           <View style={styles.notifContent}>
             <View style={styles.notifHeaderRow}>
@@ -131,7 +134,7 @@ export default function NotificationCenterScreen({ navigation }: Props) {
         {/* Item 5 */}
         <View style={styles.notifCard}>
           <View style={styles.notifIconContainerGray}>
-            <Text style={styles.notifIconGray}>🎓</Text>
+            <AppIcon name="person" size={18} color="#64748B" />
           </View>
           <View style={styles.notifContent}>
             <View style={styles.notifHeaderRow}>
@@ -159,7 +162,7 @@ export default function NotificationCenterScreen({ navigation }: Props) {
         {/* Item 6 */}
         <View style={styles.notifCard}>
           <View style={styles.notifIconContainerLightGreen}>
-            <Text style={styles.notifIconLightGreen}>🎉</Text>
+            <AppIcon name="park" size={18} color="#059669" />
           </View>
           <View style={styles.notifContent}>
             <View style={styles.notifHeaderRow}>
@@ -176,23 +179,7 @@ export default function NotificationCenterScreen({ navigation }: Props) {
         <View style={styles.bottomPad} />
       </ScrollView>
 
-      {/* Bottom Nav */}
-      <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('AcademyOverview')}>
-          <Text style={styles.navIcon}>🎛️</Text>
-          <Text style={styles.navLabel}>Dashboard</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('SchoolCodeManagement')}>
-          <Text style={styles.navIcon}>🌱</Text>
-          <Text style={styles.navLabel}>Initiatives</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('SchoolAnalytics')}>
-          <View style={styles.navItemActiveBg}>
-            <Text style={styles.navIconActive}>📊</Text>
-            <Text style={styles.navLabelActive}>Analytics</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+      <SchoolBottomNav navigation={navigation} activeRoute="NotificationCenter" />
     </SafeAreaView>
   );
 }
@@ -214,11 +201,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  headerBrandIcon: {
-    fontSize: 16,
-    color: '#059669',
-    fontWeight: '800',
-    marginRight: 4,
+  headerBrandCircle: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: '#059669',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 8,
   },
   brandName: {
     fontSize: 16,
@@ -227,24 +217,6 @@ const styles = StyleSheet.create({
   },
   iconBtn: {
     padding: 8,
-  },
-  bellBadgeContainer: {
-    position: 'relative',
-  },
-  headerIcon: {
-    fontSize: 18,
-    color: '#334155',
-  },
-  redDot: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: '#EF4444',
-    borderWidth: 1,
-    borderColor: '#F8FAFC',
   },
   scrollContent: {
     paddingHorizontal: 20,

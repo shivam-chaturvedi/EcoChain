@@ -4,10 +4,12 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
   ScrollView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import AppIcon from '../../../components/AppIcon';
+import SchoolBottomNav from '../../../components/SchoolBottomNav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -18,17 +20,21 @@ type Props = {
 
 export default function SchoolCodeManagementScreen({ navigation }: Props) {
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle="dark-content" backgroundColor="#F8FAFC" />
       
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.headerBrand}>
-          <Text style={styles.headerBrandIcon}>eco</Text>
-          <Text style={styles.brandName}>EcoSchools Admin</Text>
+          <View style={styles.headerBrandCircle}>
+            <AppIcon name="eco" size={14} color="#fff" />
+          </View>
+          <Text style={styles.brandName}>EcoChain Admin</Text>
         </View>
-        <TouchableOpacity style={styles.iconBtn}>
-          <Text style={styles.headerIcon}>🔔</Text>
+        <TouchableOpacity
+          style={styles.iconBtn}
+          onPress={() => navigation.navigate('NotificationCenter')}>
+          <AppIcon name="notifications" size={22} color="#334155" />
         </TouchableOpacity>
       </View>
 
@@ -60,7 +66,7 @@ export default function SchoolCodeManagementScreen({ navigation }: Props) {
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.shareBtn}>
-            <Text style={styles.btnIconGreen}>🔗</Text>
+            <AppIcon name="share" size={16} color="#059669" />
             <Text style={styles.shareBtnText}>Share Code</Text>
           </TouchableOpacity>
 
@@ -144,23 +150,7 @@ export default function SchoolCodeManagementScreen({ navigation }: Props) {
         <View style={styles.bottomPad} />
       </ScrollView>
 
-      {/* Bottom Nav */}
-      <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('AcademyOverview')}>
-          <Text style={styles.navIcon}>🎛️</Text>
-          <Text style={styles.navLabel}>Dashboard</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('SchoolCodeManagement')}>
-          <View style={styles.navItemActiveBg}>
-            <Text style={styles.navIconActive}>🌱</Text>
-            <Text style={styles.navLabelActive}>Initiatives</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('SchoolAnalytics')}>
-          <Text style={styles.navIcon}>📊</Text>
-          <Text style={styles.navLabel}>Analytics</Text>
-        </TouchableOpacity>
-      </View>
+      <SchoolBottomNav navigation={navigation} activeRoute="SchoolCodeManagement" />
     </SafeAreaView>
   );
 }
@@ -182,11 +172,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  headerBrandIcon: {
-    fontSize: 16,
-    color: '#059669',
-    fontWeight: '800',
-    marginRight: 4,
+  headerBrandCircle: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: '#059669',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 8,
   },
   brandName: {
     fontSize: 16,

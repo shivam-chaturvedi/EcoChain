@@ -4,10 +4,11 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
   ScrollView,
+  Clipboard,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -18,91 +19,99 @@ type Props = {
 
 export default function SchoolCodeGenerationScreen({ navigation }: Props) {
   const [schoolCode, setSchoolCode] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   const handleGenerate = () => {
     setSchoolCode('CHX-UAE-GREEN123');
+    setCopied(false);
+  };
+
+  const handleCopy = () => {
+    if (schoolCode) {
+      Clipboard.setString(schoolCode);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <StatusBar barStyle="dark-content" backgroundColor={Colors.surface} />
-      
+    <SafeAreaView style={styles.safeArea} edges={['top', 'bottom']}>
+      <StatusBar barStyle="dark-content" backgroundColor={Colors.white} />
+
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.brandRow}>
-          <Text style={styles.brandIconEmoji}>🌿</Text>
-          <Text style={styles.brandName}>ChonX</Text>
+          <View style={styles.brandIconCircle}>
+            <Text style={styles.brandIconEmoji}>🌿</Text>
+          </View>
+          <Text style={styles.brandName}>EcoChain</Text>
         </View>
-        <TouchableOpacity style={styles.menuBtn}>
-          <Text style={styles.menuIcon}>≡</Text>
-        </TouchableOpacity>
       </View>
 
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}>
 
-        <View style={styles.card}>
-          {/* Top Icon */}
+        {/* Icon + Title */}
+        <View style={styles.heroSection}>
           <View style={styles.iconCircle}>
             <Text style={styles.iconEmoji}>🎓</Text>
           </View>
-
-          {/* Texts */}
           <Text style={styles.title}>Generate your{'\n'}School Code</Text>
           <Text style={styles.subtitle}>
-            This unique identifier connects your institution's environmental impact data across the ChonX ecosystem.
+            This unique identifier connects your institution's environmental
+            impact data across the EcoChain ecosystem.
           </Text>
+        </View>
 
-          {/* Generate Button */}
+        {/* Code Display */}
+        {schoolCode ? (
+          <View style={styles.codeCard}>
+            <Text style={styles.codeLabel}>YOUR SCHOOL CODE</Text>
+            <Text style={styles.codeText}>{schoolCode}</Text>
+            <View style={styles.codeActions}>
+              <TouchableOpacity style={styles.actionBtn} onPress={handleGenerate}>
+                <Text style={styles.actionIcon}>↻</Text>
+                <Text style={styles.actionBtnText}>Regenerate</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.actionBtn, styles.copyBtn]}
+                onPress={handleCopy}>
+                <Text style={styles.actionIcon}>📋</Text>
+                <Text style={[styles.actionBtnText, styles.copyBtnText]}>
+                  {copied ? 'Copied!' : 'Copy'}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        ) : (
           <TouchableOpacity
             style={styles.generateBtn}
             onPress={handleGenerate}
-            activeOpacity={0.8}>
+            activeOpacity={0.85}>
             <Text style={styles.generateBtnText}>Generate Code ✨</Text>
           </TouchableOpacity>
+        )}
 
-          {schoolCode && (
-            <TouchableOpacity
-              style={styles.continueBtn}
-              onPress={() => navigation.navigate('StudentStructure')}
-              activeOpacity={0.8}>
-              <Text style={styles.continueBtnText}>Continue →</Text>
-            </TouchableOpacity>
-          )}
-
-          {/* Generated Code Display */}
-          {schoolCode ? (
-            <View style={styles.codeContainer}>
-              <Text style={styles.codeText}>{schoolCode}</Text>
-              <View style={styles.codeActions}>
-                <TouchableOpacity style={styles.actionBtn}>
-                  <Text style={styles.actionIcon}>↻</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.actionBtn}>
-                  <Text style={styles.actionIcon}>📄</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          ) : (
-            <View style={[styles.codeContainer, styles.codeContainerEmpty]} />
-          )}
-
-          {/* Info Text */}
-          <View style={styles.infoRow}>
-            <Text style={styles.infoIcon}>ℹ️</Text>
-            <Text style={styles.infoText}>
-              This code will be used by teachers & students during onboarding. Ensure it's shared through secure school channels.
-            </Text>
-          </View>
-
-          {/* Bottom Banner */}
-          <View style={styles.bannerContainer}>
-            <View style={styles.bannerPlaceholder} />
-          </View>
+        {/* Info box */}
+        <View style={styles.infoBox}>
+          <Text style={styles.infoIcon}>ℹ️</Text>
+          <Text style={styles.infoText}>
+            Share this code with teachers and students during onboarding
+            through secure school channels only.
+          </Text>
         </View>
 
-        <View style={styles.bottomPad} />
+        {/* Continue button (after code generated) */}
+        {schoolCode && (
+          <TouchableOpacity
+            style={styles.continueBtn}
+            onPress={() => navigation.navigate('StudentStructure')}
+            activeOpacity={0.85}>
+            <Text style={styles.continueBtnText}>Continue  →</Text>
+          </TouchableOpacity>
+        )}
+
       </ScrollView>
     </SafeAreaView>
   );
@@ -111,65 +120,75 @@ export default function SchoolCodeGenerationScreen({ navigation }: Props) {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#1C1C1E', // Dark background around the card
+    backgroundColor: Colors.white,
   },
+
+  // Header
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
     paddingHorizontal: 20,
     paddingVertical: 14,
-    backgroundColor: Colors.white,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.border,
   },
   brandRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
   },
+  brandIconCircle: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: Colors.primaryDark,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   brandIconEmoji: {
     fontSize: 16,
-    color: Colors.primaryDark,
   },
   brandName: {
     fontSize: 17,
     fontWeight: '700',
-    color: Colors.primaryDark,
-  },
-  menuBtn: {
-    padding: 4,
-  },
-  menuIcon: {
-    fontSize: 24,
     color: Colors.text,
   },
+
+  // Scroll
   scrollContent: {
-    paddingHorizontal: 20,
-    paddingTop: 20,
-  },
-  card: {
-    backgroundColor: Colors.white,
-    borderRadius: 24,
-    padding: 24,
+    flexGrow: 1,
+    paddingHorizontal: 24,
+    paddingTop: 36,
+    paddingBottom: 32,
     alignItems: 'center',
   },
+
+  // Hero
+  heroSection: {
+    alignItems: 'center',
+    marginBottom: 32,
+    width: '100%',
+  },
   iconCircle: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    width: 80,
+    height: 80,
+    borderRadius: 40,
     backgroundColor: '#E8F5ED',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 20,
+    borderWidth: 3,
+    borderColor: '#C8EDDA',
   },
   iconEmoji: {
-    fontSize: 28,
+    fontSize: 36,
   },
   title: {
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: '800',
     color: '#002B36',
     textAlign: 'center',
-    lineHeight: 32,
+    lineHeight: 36,
     marginBottom: 12,
   },
   subtitle: {
@@ -177,110 +196,131 @@ const styles = StyleSheet.create({
     color: Colors.textSecondary,
     textAlign: 'center',
     lineHeight: 22,
-    marginBottom: 24,
-    paddingHorizontal: 10,
+    paddingHorizontal: 8,
   },
+
+  // Generate button (before code is generated)
   generateBtn: {
+    height: 56,
     backgroundColor: '#10B981',
-    paddingHorizontal: 24,
-    paddingVertical: 16,
-    borderRadius: 30,
-    flexDirection: 'row',
+    borderRadius: 28,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 20,
-    width: '80%',
+    width: '100%',
+    marginBottom: 24,
     shadowColor: '#10B981',
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 4,
+    shadowRadius: 12,
+    elevation: 6,
   },
   generateBtnText: {
     color: Colors.white,
     fontWeight: '700',
     fontSize: 16,
+    letterSpacing: 0.3,
   },
-  continueBtn: {
-    backgroundColor: Colors.primaryDark,
-    paddingHorizontal: 24,
-    paddingVertical: 14,
-    borderRadius: 30,
+
+  // Code card (after code generated)
+  codeCard: {
+    width: '100%',
+    backgroundColor: '#F0FDF4',
+    borderWidth: 2,
+    borderColor: '#86EFAC',
+    borderRadius: 20,
+    padding: 24,
+    alignItems: 'center',
+    marginBottom: 24,
+  },
+  codeLabel: {
+    fontSize: 10,
+    fontWeight: '700',
+    color: '#059669',
+    letterSpacing: 1.5,
+    marginBottom: 10,
+  },
+  codeText: {
+    fontSize: 26,
+    fontWeight: '900',
+    color: '#064E3B',
+    letterSpacing: 4,
     marginBottom: 20,
-    width: '80%',
+  },
+  codeActions: {
+    flexDirection: 'row',
+    gap: 12,
+    width: '100%',
+  },
+  actionBtn: {
+    flex: 1,
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    height: 44,
+    backgroundColor: Colors.white,
+    borderWidth: 1.5,
+    borderColor: '#D1FAE5',
+    borderRadius: 12,
+    gap: 6,
+  },
+  copyBtn: {
+    backgroundColor: '#10B981',
+    borderColor: '#10B981',
+  },
+  actionIcon: {
+    fontSize: 14,
+  },
+  actionBtnText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#059669',
+  },
+  copyBtnText: {
+    color: Colors.white,
+  },
+
+  // Info box
+  infoBox: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    backgroundColor: '#F8FAFC',
+    borderRadius: 14,
+    padding: 16,
+    width: '100%',
+    marginBottom: 28,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+  },
+  infoIcon: {
+    fontSize: 14,
+    marginRight: 10,
+    marginTop: 1,
+  },
+  infoText: {
+    flex: 1,
+    fontSize: 12,
+    color: Colors.textSecondary,
+    lineHeight: 18,
+  },
+
+  // Continue button
+  continueBtn: {
+    height: 56,
+    backgroundColor: Colors.primaryDark,
+    borderRadius: 28,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    shadowColor: Colors.primaryDark,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 8,
+    elevation: 5,
   },
   continueBtnText: {
     color: Colors.white,
     fontWeight: '700',
     fontSize: 16,
-  },
-  codeContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#F3F4F6',
-    borderWidth: 1.5,
-    borderColor: '#E5E7EB',
-    borderRadius: 16,
-    borderStyle: 'dashed',
-    padding: 16,
-    width: '100%',
-    marginBottom: 20,
-    minHeight: 70,
-  },
-  codeContainerEmpty: {
-    borderColor: 'transparent',
-    backgroundColor: 'transparent',
-  },
-  codeText: {
-    fontSize: 20,
-    fontWeight: '800',
-    color: Colors.primaryDark,
-    letterSpacing: 2,
-    flex: 1,
-  },
-  codeActions: {
-    flexDirection: 'row',
-    gap: 12,
-  },
-  actionBtn: {
-    padding: 4,
-  },
-  actionIcon: {
-    fontSize: 20,
-    color: Colors.primaryDark,
-  },
-  infoRow: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    marginBottom: 30,
-    paddingHorizontal: 10,
-  },
-  infoIcon: {
-    fontSize: 14,
-    marginRight: 8,
-    marginTop: 2,
-  },
-  infoText: {
-    flex: 1,
-    fontSize: 11,
-    color: Colors.textSecondary,
-    lineHeight: 16,
-  },
-  bannerContainer: {
-    width: '100%',
-    height: 100,
-    borderRadius: 16,
-    overflow: 'hidden',
-    backgroundColor: '#E5E7EB',
-  },
-  bannerPlaceholder: {
-    flex: 1,
-    opacity: 0.5,
-  },
-  bottomPad: {
-    height: 40,
+    letterSpacing: 0.3,
   },
 });

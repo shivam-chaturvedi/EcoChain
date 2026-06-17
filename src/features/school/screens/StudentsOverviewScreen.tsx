@@ -4,11 +4,13 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
   ScrollView,
   TextInput,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import AppIcon from '../../../components/AppIcon';
+import SchoolBottomNav, { BOTTOM_NAV_HEIGHT } from '../../../components/SchoolBottomNav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -17,37 +19,49 @@ type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'StudentsOverview'>;
 };
 
+type Student = { name: string; id: string; grade: string; activities: number };
+
+const STUDENTS: Student[] = [
+  { name: 'Alex Rivera', id: '#STU-9283', grade: 'Grade 11-B', activities: 42 },
+  { name: 'Sarah Jenkins', id: '#STU-8472', grade: 'Grade 12-A', activities: 28 },
+  { name: 'Marcus Chen', id: '#STU-3321', grade: 'Grade 10-C', activities: 15 },
+  { name: 'Elena Vogt', id: '#STU-1104', grade: 'Grade 12-B', activities: 88 },
+];
+
 export default function StudentsOverviewScreen({ navigation }: Props) {
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <StatusBar barStyle="dark-content" backgroundColor="#F8FAFC" />
-      
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
+      <StatusBar barStyle="dark-content" backgroundColor={Colors.white} />
+
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.headerLeft}>
           <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
-            <Text style={styles.backIcon}>←</Text>
+            <AppIcon name="arrow-back" size={22} color="#006D5B" />
           </TouchableOpacity>
           <View style={styles.headerLogoBg}>
-             <Text style={styles.headerLogoEmoji}>🌿</Text>
+            <AppIcon name="eco" size={16} color="#fff" />
           </View>
-          <Text style={styles.brandName}>ChonX</Text>
+          <Text style={styles.brandName}>EcoChain</Text>
         </View>
         <View style={styles.headerRight}>
-          <TouchableOpacity style={styles.iconBtn}>
-            <Text style={styles.headerIcon}>🔔</Text>
+          <TouchableOpacity
+            style={styles.iconBtn}
+            onPress={() => navigation.navigate('NotificationCenter')}>
+            <AppIcon name="notifications" size={22} color="#334155" />
           </TouchableOpacity>
-          <View style={styles.profileCircle}>
-            <Text style={styles.profileIcon}>👤</Text>
-          </View>
+          <TouchableOpacity
+            style={styles.profileCircle}
+            onPress={() => navigation.navigate('SchoolSettingsProfile')}>
+            <AppIcon name="person" size={18} color="#334155" />
+          </TouchableOpacity>
         </View>
       </View>
 
       <ScrollView
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, { paddingBottom: BOTTOM_NAV_HEIGHT + 20 }]}
         showsVerticalScrollIndicator={false}>
 
-        {/* Title Section */}
         <Text style={styles.title}>Students Overview</Text>
         <Text style={styles.subtitle}>
           Manage and monitor student engagement in sustainable initiatives across the school.
@@ -56,15 +70,15 @@ export default function StudentsOverviewScreen({ navigation }: Props) {
         {/* Search & Filter */}
         <View style={styles.searchRow}>
           <View style={styles.searchContainer}>
-            <Text style={styles.searchIcon}>🔍</Text>
+            <AppIcon name="search" size={16} color="#94A3B8" />
             <TextInput
               style={styles.searchInput}
-              placeholder="Search by name or cl..."
+              placeholder="Search by name or class..."
               placeholderTextColor="#94A3B8"
             />
           </View>
           <TouchableOpacity style={styles.filterBtn}>
-            <Text style={styles.filterIcon}>≡</Text>
+            <AppIcon name="filter-list" size={16} color="#475569" />
             <Text style={styles.filterText}>Filter</Text>
           </TouchableOpacity>
         </View>
@@ -74,7 +88,10 @@ export default function StudentsOverviewScreen({ navigation }: Props) {
           <Text style={styles.summaryLabel}>TOTAL STUDENTS</Text>
           <View style={styles.summaryValueRow}>
             <Text style={styles.summaryValue}>1,284</Text>
-            <Text style={styles.trendGreen}>↗+4%</Text>
+            <View style={styles.trendBadge}>
+              <AppIcon name="trending-up" size={12} color="#059669" />
+              <Text style={styles.trendGreen}> +4%</Text>
+            </View>
           </View>
         </View>
 
@@ -90,7 +107,10 @@ export default function StudentsOverviewScreen({ navigation }: Props) {
           <Text style={styles.summaryLabel}>ACTIVE INITIATIVES</Text>
           <View style={styles.summaryValueRow}>
             <Text style={styles.summaryValue}>12</Text>
-            <Text style={styles.trendBlue}>Live Now</Text>
+            <View style={styles.liveChip}>
+              <View style={styles.liveDot} />
+              <Text style={styles.liveText}>Live Now</Text>
+            </View>
           </View>
         </View>
 
@@ -99,221 +119,102 @@ export default function StudentsOverviewScreen({ navigation }: Props) {
           <View style={styles.tableHeader}>
             <Text style={[styles.tableColHeader, { flex: 2.5 }]}>STUDENT</Text>
             <Text style={[styles.tableColHeader, { flex: 1.5 }]}>CLASS</Text>
-            <Text style={[styles.tableColHeader, { flex: 1, textAlign: 'center' }]}>ACTIVITIES</Text>
+            <Text style={[styles.tableColHeader, { flex: 1, textAlign: 'right' }]}>ACTIVITIES</Text>
           </View>
 
-          {/* Row 1 */}
-          <View style={styles.tableRow}>
-            <View style={[styles.studentCell, { flex: 2.5 }]}>
-              <View style={styles.studentAvatar}>
-                <Text style={styles.studentAvatarEmoji}>🧑🏽</Text>
+          {STUDENTS.map((s, i) => (
+            <TouchableOpacity
+              key={s.id}
+              style={[styles.tableRow, i === STUDENTS.length - 1 && { borderBottomWidth: 0 }]}
+              onPress={() => navigation.navigate('StudentDetailProfile')}
+              activeOpacity={0.7}>
+              <View style={[styles.studentCell, { flex: 2.5 }]}>
+                <View style={styles.studentAvatar}>
+                  <AppIcon name="person" size={18} color="#64748B" />
+                </View>
+                <View>
+                  <Text style={styles.studentName}>{s.name}</Text>
+                  <Text style={styles.studentId}>ID: {s.id}</Text>
+                </View>
               </View>
-              <View>
-                <Text style={styles.studentName}>Alex Rivera</Text>
-                <Text style={styles.studentId}>ID: #STU-9283</Text>
+              <View style={{ flex: 1.5, justifyContent: 'center' }}>
+                <Text style={styles.classText}>{s.grade}</Text>
               </View>
-            </View>
-            <View style={{ flex: 1.5, justifyContent: 'center' }}>
-              <Text style={styles.classText}>Grade 11-B</Text>
-            </View>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-              <Text style={styles.activityText}>42</Text>
-            </View>
-          </View>
-
-          {/* Row 2 */}
-          <View style={styles.tableRow}>
-            <View style={[styles.studentCell, { flex: 2.5 }]}>
-              <View style={styles.studentAvatar}>
-                <Text style={styles.studentAvatarEmoji}>👱🏼‍♀️</Text>
+              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
+                <Text style={styles.activityText}>{s.activities}</Text>
               </View>
-              <View>
-                <Text style={styles.studentName}>Sarah Jenkins</Text>
-                <Text style={styles.studentId}>ID: #STU-8472</Text>
-              </View>
-            </View>
-            <View style={{ flex: 1.5, justifyContent: 'center' }}>
-              <Text style={styles.classText}>Grade 12-A</Text>
-            </View>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-              <Text style={styles.activityText}>28</Text>
-            </View>
-          </View>
-
-          {/* Row 3 */}
-          <View style={styles.tableRow}>
-            <View style={[styles.studentCell, { flex: 2.5 }]}>
-              <View style={styles.studentAvatar}>
-                <Text style={styles.studentAvatarEmoji}>👨🏻</Text>
-              </View>
-              <View>
-                <Text style={styles.studentName}>Marcus Chen</Text>
-                <Text style={styles.studentId}>ID: #STU-3321</Text>
-              </View>
-            </View>
-            <View style={{ flex: 1.5, justifyContent: 'center' }}>
-              <Text style={styles.classText}>Grade 10-C</Text>
-            </View>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-              <Text style={styles.activityText}>15</Text>
-            </View>
-          </View>
-
-          {/* Row 4 */}
-          <View style={[styles.tableRow, { borderBottomWidth: 0 }]}>
-            <View style={[styles.studentCell, { flex: 2.5 }]}>
-              <View style={styles.studentAvatar}>
-                <Text style={styles.studentAvatarEmoji}>👩🏾</Text>
-              </View>
-              <View>
-                <Text style={styles.studentName}>Elena Vogt</Text>
-                <Text style={styles.studentId}>ID: #STU-1104</Text>
-              </View>
-            </View>
-            <View style={{ flex: 1.5, justifyContent: 'center' }}>
-              <Text style={styles.classText}>Grade 12-B</Text>
-            </View>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-              <Text style={styles.activityText}>88</Text>
-            </View>
-          </View>
+            </TouchableOpacity>
+          ))}
 
           {/* Pagination */}
           <View style={styles.paginationRow}>
             <Text style={styles.paginationText}>Showing 1 to 10 of 1,284 students</Text>
             <View style={styles.paginationControls}>
-              <TouchableOpacity style={styles.pageBtn}><Text style={styles.pageBtnText}>{'<'}</Text></TouchableOpacity>
-              <TouchableOpacity style={[styles.pageBtn, styles.pageBtnActive]}><Text style={[styles.pageBtnText, styles.pageBtnTextActive]}>1</Text></TouchableOpacity>
-              <TouchableOpacity style={styles.pageBtn}><Text style={styles.pageBtnText}>2</Text></TouchableOpacity>
-              <TouchableOpacity style={styles.pageBtn}><Text style={styles.pageBtnText}>3</Text></TouchableOpacity>
-              <TouchableOpacity style={styles.pageBtn}><Text style={styles.pageBtnText}>{'>'}</Text></TouchableOpacity>
+              {['<', '1', '2', '3', '>'].map((p, i) => (
+                <TouchableOpacity key={i} style={[styles.pageBtn, p === '1' && styles.pageBtnActive]}>
+                  <Text style={[styles.pageBtnText, p === '1' && styles.pageBtnTextActive]}>{p}</Text>
+                </TouchableOpacity>
+              ))}
             </View>
           </View>
         </View>
-
-        <View style={styles.bottomPad} />
       </ScrollView>
 
-      {/* FAB */}
-      <TouchableOpacity style={styles.fab}>
-        <Text style={styles.fabIcon}>👤→</Text>
-      </TouchableOpacity>
+      <SchoolBottomNav navigation={navigation} activeRoute="AcademyOverview" />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#F8FAFC', // Very light background
-  },
+  safeArea: { flex: 1, backgroundColor: '#F8FAFC' },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
     paddingVertical: 14,
-    backgroundColor: '#F8FAFC',
+    backgroundColor: Colors.white,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.border,
   },
-  headerLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-  backBtn: {
-    padding: 4,
-  },
-  backIcon: {
-    fontSize: 20,
-    color: '#006D5B',
-  },
+  headerLeft: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  backBtn: { padding: 4 },
   headerLogoBg: {
-    backgroundColor: '#002B20',
-    width: 28,
-    height: 28,
-    borderRadius: 8,
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: '#059669',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  headerLogoEmoji: {
-    fontSize: 14,
-  },
-  brandName: {
-    fontSize: 20,
-    fontWeight: '800',
-    color: '#004D40',
-  },
-  headerRight: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 16,
-  },
-  iconBtn: {
-    padding: 4,
-  },
-  headerIcon: {
-    fontSize: 20,
-    color: '#334155',
-  },
+  brandName: { fontSize: 18, fontWeight: '700', color: '#004D40' },
+  headerRight: { flexDirection: 'row', alignItems: 'center', gap: 16 },
+  iconBtn: { padding: 4 },
   profileCircle: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
+    width: 34,
+    height: 34,
+    borderRadius: 17,
     backgroundColor: '#E2E8F0',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  profileIcon: {
-    fontSize: 14,
-  },
-  scrollContent: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    paddingBottom: 40,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: '800',
-    color: '#002B36',
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 13,
-    color: '#475569',
-    lineHeight: 20,
-    marginBottom: 24,
-  },
-  searchRow: {
-    flexDirection: 'row',
-    gap: 12,
-    marginBottom: 24,
-  },
+  scrollContent: { paddingHorizontal: 20, paddingTop: 20 },
+  title: { fontSize: 28, fontWeight: '800', color: '#002B36', marginBottom: 8 },
+  subtitle: { fontSize: 13, color: '#475569', lineHeight: 20, marginBottom: 24 },
+  searchRow: { flexDirection: 'row', gap: 12, marginBottom: 24 },
   searchContainer: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: Colors.white,
     borderRadius: 20,
-    paddingHorizontal: 16,
+    paddingHorizontal: 14,
     height: 44,
-    shadowColor: Colors.cardShadow,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 8,
-    elevation: 2,
     borderWidth: 1,
     borderColor: '#E2E8F0',
+    gap: 8,
   },
-  searchIcon: {
-    fontSize: 14,
-    marginRight: 8,
-  },
-  searchInput: {
-    flex: 1,
-    fontSize: 13,
-    color: '#1E293B',
-    height: '100%',
-  },
+  searchInput: { flex: 1, fontSize: 13, color: '#1E293B', height: '100%' },
   filterBtn: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -322,26 +223,18 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingHorizontal: 16,
     height: 44,
+    gap: 6,
   },
-  filterIcon: {
-    fontSize: 14,
-    color: '#475569',
-    marginRight: 6,
-  },
-  filterText: {
-    fontSize: 13,
-    fontWeight: '600',
-    color: '#475569',
-  },
+  filterText: { fontSize: 13, fontWeight: '600', color: '#475569' },
   summaryCard: {
     backgroundColor: Colors.white,
     borderRadius: 20,
     padding: 20,
     marginBottom: 16,
-    shadowColor: Colors.cardShadow,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.03,
-    shadowRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.04,
+    shadowRadius: 8,
     elevation: 2,
   },
   summaryLabel: {
@@ -353,39 +246,33 @@ const styles = StyleSheet.create({
   },
   summaryValueRow: {
     flexDirection: 'row',
-    alignItems: 'baseline',
+    alignItems: 'center',
     gap: 12,
   },
-  summaryValue: {
-    fontSize: 28,
-    fontWeight: '800',
-    color: '#002B36',
+  summaryValue: { fontSize: 28, fontWeight: '800', color: '#002B36' },
+  trendBadge: { flexDirection: 'row', alignItems: 'center' },
+  trendGreen: { fontSize: 12, fontWeight: '700', color: '#059669' },
+  trendTeal: { fontSize: 12, fontWeight: '700', color: '#0F766E' },
+  liveChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#DBEAFE',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 20,
+    gap: 5,
   },
-  trendGreen: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: '#059669',
-  },
-  trendTeal: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: '#0F766E',
-  },
-  trendBlue: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: '#2563EB',
-  },
+  liveDot: { width: 6, height: 6, borderRadius: 3, backgroundColor: '#2563EB' },
+  liveText: { fontSize: 11, fontWeight: '700', color: '#2563EB' },
   tableCard: {
     backgroundColor: Colors.white,
     borderRadius: 20,
     paddingHorizontal: 16,
     paddingVertical: 20,
-    marginTop: 8,
-    shadowColor: Colors.cardShadow,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.03,
-    shadowRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.04,
+    shadowRadius: 8,
     elevation: 2,
   },
   tableHeader: {
@@ -393,70 +280,32 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#F1F5F9',
     paddingBottom: 12,
-    marginBottom: 8,
+    marginBottom: 4,
   },
-  tableColHeader: {
-    fontSize: 9,
-    fontWeight: '800',
-    color: '#94A3B8',
-    letterSpacing: 1,
-  },
+  tableColHeader: { fontSize: 9, fontWeight: '800', color: '#94A3B8', letterSpacing: 1 },
   tableRow: {
     flexDirection: 'row',
     paddingVertical: 14,
     borderBottomWidth: 1,
     borderBottomColor: '#F8FAFC',
   },
-  studentCell: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingRight: 8,
-  },
+  studentCell: { flexDirection: 'row', alignItems: 'center', paddingRight: 8 },
   studentAvatar: {
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: '#E0F2FE',
+    backgroundColor: '#E2E8F0',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 10,
   },
-  studentAvatarEmoji: {
-    fontSize: 18,
-  },
-  studentName: {
-    fontSize: 13,
-    fontWeight: '800',
-    color: '#1E293B',
-    marginBottom: 2,
-  },
-  studentId: {
-    fontSize: 9,
-    color: '#64748B',
-    fontWeight: '600',
-  },
-  classText: {
-    fontSize: 12,
-    color: '#475569',
-  },
-  activityText: {
-    fontSize: 14,
-    fontWeight: '700',
-    color: '#1E293B',
-  },
-  paginationRow: {
-    marginTop: 20,
-    alignItems: 'center',
-  },
-  paginationText: {
-    fontSize: 10,
-    color: '#94A3B8',
-    marginBottom: 12,
-  },
-  paginationControls: {
-    flexDirection: 'row',
-    gap: 8,
-  },
+  studentName: { fontSize: 13, fontWeight: '700', color: '#1E293B', marginBottom: 2 },
+  studentId: { fontSize: 9, color: '#64748B', fontWeight: '600' },
+  classText: { fontSize: 12, color: '#475569' },
+  activityText: { fontSize: 14, fontWeight: '700', color: '#1E293B' },
+  paginationRow: { marginTop: 20, alignItems: 'center' },
+  paginationText: { fontSize: 10, color: '#94A3B8', marginBottom: 12 },
+  paginationControls: { flexDirection: 'row', gap: 8 },
   pageBtn: {
     width: 32,
     height: 32,
@@ -467,40 +316,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  pageBtnActive: {
-    backgroundColor: '#004D40',
-    borderColor: '#004D40',
-  },
-  pageBtnText: {
-    fontSize: 12,
-    color: '#475569',
-    fontWeight: '600',
-  },
-  pageBtnTextActive: {
-    color: Colors.white,
-  },
-  bottomPad: {
-    height: 60,
-  },
-  fab: {
-    position: 'absolute',
-    right: 24,
-    bottom: 24,
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: '#059669',
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#059669',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.4,
-    shadowRadius: 8,
-    elevation: 5,
-  },
-  fabIcon: {
-    color: Colors.white,
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
+  pageBtnActive: { backgroundColor: '#004D40', borderColor: '#004D40' },
+  pageBtnText: { fontSize: 12, color: '#475569', fontWeight: '600' },
+  pageBtnTextActive: { color: Colors.white },
 });

@@ -5,13 +5,12 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
   ScrollView,
   KeyboardAvoidingView,
   Platform,
-  ImageBackground,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigation/types';
 import { Colors } from '../../../constants';
@@ -35,7 +34,7 @@ export default function AdminProfileSetupScreen({ navigation }: Props) {
     phone.trim().length > 0;
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['top', 'bottom']}>
       <StatusBar barStyle="dark-content" backgroundColor={Colors.surface} />
       
       {/* Header */}
@@ -171,18 +170,9 @@ export default function AdminProfileSetupScreen({ navigation }: Props) {
                 disabled={!canProceed}
                 activeOpacity={0.85}>
                 <Text style={[styles.nextBtnText, !canProceed && styles.nextBtnTextDisabled]}>
-                  Next{'\n'}Step →
+                  Next Step →
                 </Text>
               </TouchableOpacity>
-            </View>
-          </View>
-
-          {/* Banner */}
-          <View style={styles.bannerContainer}>
-            <View style={styles.bannerImagePlaceholder}>
-              <Text style={styles.bannerText}>
-                Join over 1,200 sustainability leads driving change in their school communities.
-              </Text>
             </View>
           </View>
 
@@ -394,26 +384,6 @@ const styles = StyleSheet.create({
   },
   nextBtnTextDisabled: {
     color: '#ECFDF5',
-  },
-  bannerContainer: {
-    height: 140,
-    borderRadius: 24,
-    overflow: 'hidden',
-  },
-  bannerImagePlaceholder: {
-    flex: 1,
-    backgroundColor: '#86A789', // placeholder green to simulate the plant image
-    justifyContent: 'flex-end',
-    padding: 20,
-  },
-  bannerText: {
-    color: Colors.white,
-    fontSize: 14,
-    fontWeight: '600',
-    lineHeight: 20,
-    textShadowColor: 'rgba(0,0,0,0.3)',
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 3,
   },
   bottomPad: {
     height: 40,
