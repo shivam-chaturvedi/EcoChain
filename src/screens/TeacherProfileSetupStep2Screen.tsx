@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   labelRow: { flexDirection: 'row', justifyContent: 'space-between' },
   label: { fontSize: 12, fontWeight: '700', color: '#3c4a42', letterSpacing: 1, marginBottom: 8 },
   labelOptional: { fontSize: 10, fontWeight: '700', color: '#6c7a71', letterSpacing: -0.5 },
-  inputWrapper: { relative: true },
+  inputWrapper: { position: 'relative' },
   inputIcon: { position: 'absolute', left: 16, top: 16, zIndex: 1 },
   input: { backgroundColor: '#f3f4f5', borderRadius: 8, paddingLeft: 48, paddingRight: 16, height: 56, fontSize: 16, color: '#191c1d' },
   disclaimerBox: { flexDirection: 'row', gap: 12, backgroundColor: 'rgba(16,185,129,0.1)', borderWidth: 1, borderColor: 'rgba(16,185,129,0.2)', padding: 12, borderRadius: 8, alignItems: 'flex-start' },

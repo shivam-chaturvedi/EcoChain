@@ -108,7 +108,7 @@ export default function TeacherDashboardTutorialScreen({ navigation }: any) {
 
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: '#000' },
-  mockupContainer: { ...StyleSheet.absoluteFillObject, opacity: 0.4 }, // Fake blur/grayscale
+  mockupContainer: { ...StyleSheet.absoluteFill as any, opacity: 0.4 }, // Fake blur/grayscale
   mockupHeader: { height: 64, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 24, backgroundColor: '#f8f9fa' },
   mockupLogoText: { fontSize: 24, fontWeight: '800', color: '#006c49' },
   mockupHeaderRight: { flexDirection: 'row', alignItems: 'center', gap: 16 },
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   mockupBox: { flex: 1, height: 128, backgroundColor: '#edeeef', borderRadius: 4 },
   mockupCard2: { backgroundColor: '#fff', borderRadius: 8, height: 384 },
   
-  overlay: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.6)' },
+  overlay: { ...StyleSheet.absoluteFill as any, backgroundColor: 'rgba(0,0,0,0.6)' },
   
   tooltip1: { position: 'absolute', top: 80, right: 24, alignItems: 'flex-end', gap: 12 },
   tooltip1Box: { backgroundColor: '#10b981', padding: 24, borderRadius: 8, maxWidth: 300, elevation: 8 },

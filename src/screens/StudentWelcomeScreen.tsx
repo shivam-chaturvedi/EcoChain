@@ -45,7 +45,7 @@ export default function StudentWelcomeScreen({ navigation }: any) {
           <Text style={styles.title}>Let's build your sustainability journey!</Text>
           <Text style={styles.subtitle}>Join a global community of students making a real-world difference. Earn XP, track your footprint, and unlock rewards as you grow your green legacy.</Text>
 
-          <TouchableOpacity style={styles.getStartedBtn}>
+          <TouchableOpacity style={styles.getStartedBtn} onPress={() => navigation.navigate('StudentDashboard')}>
             <LinearGradient colors={['#10b981', '#059669']} style={styles.getStartedGradient}>
               <Text style={styles.getStartedText}>Get Started</Text>
               <Icon name="arrow-forward" size={24} color="#fff" />
@@ -70,7 +70,7 @@ export default function StudentWelcomeScreen({ navigation }: any) {
 
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: '#f0fdf4' },
-  bgGradientContainer: { ...StyleSheet.absoluteFillObject, overflow: 'hidden' },
+  bgGradientContainer: { ...StyleSheet.absoluteFill as any, overflow: 'hidden' },
   ambientTopRight: { position: 'absolute', top: -100, right: -100, width: 400, height: 400, backgroundColor: 'rgba(111, 251, 190, 0.2)', borderRadius: 200 },
   ambientBottomLeft: { position: 'absolute', bottom: -100, left: -100, width: 300, height: 300, backgroundColor: 'rgba(113, 248, 228, 0.2)', borderRadius: 150 },
   mainContainer: { flex: 1, padding: 24, justifyContent: 'center', alignItems: 'center' },

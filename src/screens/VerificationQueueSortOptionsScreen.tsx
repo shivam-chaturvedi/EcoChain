@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   headerTitle: { fontSize: 24, fontWeight: '800', color: '#006c49' },
   bgContent: { flex: 1 },
   modalOverlay: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(25,28,29,0.4)' },
-  modalBg: { ...StyleSheet.absoluteFillObject },
+  modalBg: { ...StyleSheet.absoluteFill as any },
   bottomSheet: { backgroundColor: 'rgba(255, 255, 255, 0.9)', borderTopLeftRadius: 16, borderTopRightRadius: 16, borderWidth: 1, borderColor: 'rgba(255,255,255,0.3)' },
   sheetHandle: { width: 48, height: 6, backgroundColor: 'rgba(187,202,191,0.5)', borderRadius: 3, alignSelf: 'center', marginTop: 12, marginBottom: 12 },
   sheetHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 24, paddingBottom: 16 },

@@ -199,7 +199,10 @@ export default function TeacherProfileScreen({ navigation }: Props) {
         </View>
 
         {/* ── Log Out ── */}
-        <TouchableOpacity style={styles.logoutBtn} activeOpacity={0.85}>
+        <TouchableOpacity 
+          style={styles.logoutBtn} 
+          activeOpacity={0.85}
+          onPress={() => navigation.reset({ index: 0, routes: [{ name: 'LoginScreen' }] })}>
           <Text style={styles.logoutBtnText}>↪  Log Out</Text>
         </TouchableOpacity>
 

@@ -106,5 +106,5 @@ const styles = StyleSheet.create({
   helperText: { fontSize: 12, fontWeight: '700', color: '#3c4a42', flex: 1, lineHeight: 16 },
   imageContainer: { width: '100%', height: 128, borderRadius: 8, overflow: 'hidden', marginTop: 64, position: 'relative' },
   image: { width: '100%', height: '100%', resizeMode: 'cover', opacity: 0.4 },
-  imageGradient: { ...StyleSheet.absoluteFillObject },
+  imageGradient: { ...StyleSheet.absoluteFill as any },
 });

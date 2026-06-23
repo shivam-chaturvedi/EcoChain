@@ -33,7 +33,7 @@ export default function TeacherWelcomeScreen({ navigation }: any) {
           </View>
           <Text style={styles.heroTitle}>Empower your students for a <Text style={{fontStyle: 'italic', color: '#006c49'}}>greener future.</Text></Text>
           <Text style={styles.heroSubtitle}>Manage your classes, track environmental progress, and lead sustainability campaigns with ChonX's integrated educator dashboard.</Text>
-          <TouchableOpacity style={styles.startBtn} onPress={() => navigation.navigate('TeacherDashboard')}>
+          <TouchableOpacity style={styles.startBtn} onPress={() => navigation.navigate('TeacherTabs')}>
             <LinearGradient colors={['#10b981', '#006b5f']} style={styles.startGradient} start={{x: 0, y: 0}} end={{x: 1, y: 1}}>
               <Text style={styles.startText}>Get Started</Text>
               <Icon name="arrow-forward" size={24} color="#fff" />

@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
   scrollContent: { paddingBottom: 120 },
   heroContainer: { height: 350, position: 'relative' },
   heroImage: { width: '100%', height: '100%', resizeMode: 'cover' },
-  heroGradient: { ...StyleSheet.absoluteFillObject },
+  heroGradient: { ...StyleSheet.absoluteFill as any },
   topControls: { position: 'absolute', top: 24, left: 24, right: 24, flexDirection: 'row', justifyContent: 'space-between' },
   controlBtn: { width: 48, height: 48, borderRadius: 24, backgroundColor: 'rgba(255,255,255,0.2)', alignItems: 'center', justifyContent: 'center' },
   categoryBadge: { position: 'absolute', bottom: 40, left: 24, backgroundColor: '#6df5e1', paddingHorizontal: 16, paddingVertical: 6, borderRadius: 16 },

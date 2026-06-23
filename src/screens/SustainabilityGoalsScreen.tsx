@@ -235,8 +235,8 @@ const styles = StyleSheet.create({
   scoreTitle: { fontSize: 24, fontWeight: '600', color: '#6ffbbe', marginBottom: 4 },
   scoreDesc: { fontSize: 16, color: '#4edea3', opacity: 0.8 },
   imageCard: { flex: 1, minWidth: 300, borderRadius: 8, overflow: 'hidden', minHeight: 160 },
-  imageCardBg: { ...StyleSheet.absoluteFillObject, width: '100%', height: '100%', resizeMode: 'cover' },
-  imageCardOverlay: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'flex-end', padding: 24 },
+  imageCardBg: { ...StyleSheet.absoluteFill as any, width: '100%', height: '100%', resizeMode: 'cover' },
+  imageCardOverlay: { ...StyleSheet.absoluteFill as any, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'flex-end', padding: 24 },
   imageCardPreTitle: { fontSize: 12, fontWeight: '700', color: '#fff', opacity: 0.8, letterSpacing: 1 },
   imageCardTitle: { fontSize: 24, fontWeight: '600', color: '#fff' },
 });

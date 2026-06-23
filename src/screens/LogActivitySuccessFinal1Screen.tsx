@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     transform: [{ rotate: '45deg' }],
   },
   overlayContainer: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill as any,
     backgroundColor: 'rgba(255,255,255,0.95)',
     justifyContent: 'center',
     alignItems: 'center',

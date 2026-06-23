@@ -98,7 +98,7 @@ export default function TeacherDetailProfileScreen({ navigation }: any) {
                 <View key={i} style={styles.tr}>
                   <Text style={[styles.td, { flex: 2, fontWeight: 'bold', color: '#191c1d' }]}>{row.name}</Text>
                   <Text style={[styles.td, { flex: 1, textAlign: 'center', fontWeight: '600' }]}>{row.hours}</Text>
-                  <View style={[styles.td, { flex: 1.5, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', gap: 4 }]}>
+                  <View style={[{ flex: 1.5, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', gap: 4 }]}>
                     <Text style={{fontWeight: 'bold', color: '#059669'}}>{row.credits}</Text>
                     <Icon name="eco" size={16} color="#059669" />
                   </View>

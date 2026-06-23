@@ -7,6 +7,7 @@ import ChonxSplashScreen2 from '../screens/ChonxSplashScreen2';
 import IntroCarouselScreen from '../screens/IntroCarouselScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RoleSelectionScreen from '../screens/RoleSelectionScreen';
+import TeacherTabNavigator from './TeacherTabNavigator';
 import LanguageSelectionScreen from '../screens/LanguageSelectionScreen';
 import RegionSelectionScreen from '../screens/RegionSelectionScreen';
 import NotificationPreferencesScreen from '../screens/NotificationPreferencesScreen';
@@ -115,40 +116,28 @@ import LogEcoActionScreen from '../screens/LogEcoActionScreen';
 import ManageChallengesScreen from '../screens/ManageChallengesScreen';
 import MyWalletScreen from '../screens/MyWalletScreen';
 import NotificationsCenterScreen from '../screens/NotificationsCenterScreen';
-import OnboardingCompleteScreen from '../screens/OnboardingCompleteScreen';
 import SchoolAdminWelcomeScreen from '../screens/SchoolAdminWelcomeScreen';
-import SchoolAnalyticsScreen from '../screens/SchoolAnalyticsScreen';
 import SchoolCampaignDetailsScreen from '../screens/SchoolCampaignDetailsScreen';
 import SchoolCampaigns1Screen from '../screens/SchoolCampaigns1Screen';
 import SchoolCampaigns2Screen from '../screens/SchoolCampaigns2Screen';
 import SchoolCodeEntryScreen from '../screens/SchoolCodeEntryScreen';
-import SchoolCodeGenerationScreen from '../screens/SchoolCodeGenerationScreen';
-import SchoolCodeManagementScreen from '../screens/SchoolCodeManagementScreen';
 import SchoolDashboardScreen from '../screens/SchoolDashboardScreen';
 import SchoolInitiativesScreen from '../screens/SchoolInitiativesScreen';
 import SchoolInitiativesListScreen from '../screens/SchoolInitiativesListScreen';
-import SchoolRegistrationScreen from '../screens/SchoolRegistrationScreen';
-import SchoolSettingsProfileScreen from '../screens/SchoolSettingsProfileScreen';
 import SettingsNotificationsScreen from '../screens/SettingsNotificationsScreen';
 import StudentDashboardScreen from '../screens/StudentDashboardScreen';
 import StudentDetailProfileScreen from '../screens/StudentDetailProfileScreen';
-import StudentProfileScreen from '../screens/StudentProfileScreen';
 import StudentProfileSetupScreen from '../screens/StudentProfileSetupScreen';
 import StudentSectionStructureScreen from '../screens/StudentSectionStructureScreen';
-import StudentStructureScreen from '../screens/StudentStructureScreen';
 import StudentWelcomeScreen from '../screens/StudentWelcomeScreen';
-import StudentsOverviewScreen from '../screens/StudentsOverviewScreen';
 import SubmissionRejectionFormScreen from '../screens/SubmissionRejectionFormScreen';
 import SupportHelpHubScreen from '../screens/SupportHelpHubScreen';
-import SustainabilityGoalsScreen from '../screens/SustainabilityGoalsScreen';
 import TeacherAvatarSelectionScreen from '../screens/TeacherAvatarSelectionScreen';
 import TeacherChallengesArenaScreen from '../screens/TeacherChallengesArenaScreen';
 import TeacherClassSetupScreen from '../screens/TeacherClassSetupScreen';
-import TeacherDashboardScreen from '../screens/TeacherDashboardScreen';
 import TeacherDashboardTutorialScreen from '../screens/TeacherDashboardTutorialScreen';
 import TeacherDetailProfileScreen from '../screens/TeacherDetailProfileScreen';
 import TeacherManagementScreen from '../screens/TeacherManagementScreen';
-import TeacherProfileScreen from '../screens/TeacherProfileScreen';
 import TeacherProfileSetupStep1Screen from '../screens/TeacherProfileSetupStep1Screen';
 import TeacherProfileSetupStep2Screen from '../screens/TeacherProfileSetupStep2Screen';
 import TeacherWelcomeScreen from '../screens/TeacherWelcomeScreen';
@@ -221,6 +210,7 @@ export default function AppNavigator() {
         <Stack.Screen name="TeacherClassSelection" component={TeacherClassSelectionScreen} />
         <Stack.Screen name="TeacherNotifications" component={TeacherNotificationsScreen} />
         <Stack.Screen name="TeacherFeatureTour" component={TeacherFeatureTourScreen} />
+        <Stack.Screen name="TeacherTabs" component={TeacherTabNavigator} />
         <Stack.Screen name="TeacherDashboard" component={TeacherDashboardScreen} />
         <Stack.Screen name="TeacherClassManager" component={TeacherClassManagerScreen} />
         <Stack.Screen name="TeacherAnalyticsDashboard" component={TeacherAnalyticsDashboardScreen} />
@@ -238,12 +228,9 @@ export default function AppNavigator() {
         <Stack.Screen name="TeacherAnnouncementsManager" component={TeacherAnnouncementsManagerScreen} />
         <Stack.Screen name="TeacherProfile" component={TeacherProfileScreen} />
         <Stack.Screen name="ActivityDirectory" component={ActivityDirectoryScreen} />
-        <Stack.Screen name="ActivityFeed" component={ActivityFeedNewScreen} />
         <Stack.Screen name="AnnouncementsEvents" component={AnnouncementsEventsScreen} />
         <Stack.Screen name="AnnouncementsManager" component={AnnouncementsManagerScreen} />
-        <Stack.Screen name="ArenaHub" component={ArenaHubScreenNew} />
         <Stack.Screen name="ArenaLeaderboard" component={ArenaLeaderboardScreen} />
-        <Stack.Screen name="AvatarSelection" component={AvatarSelectionScreenNew} />
         <Stack.Screen name="BrandingSetup" component={BrandingSetupScreen} />
         <Stack.Screen name="CarbonAnalytics" component={CarbonAnalyticsScreen} />
         <Stack.Screen name="CarbonCalculatorTravel" component={CarbonCalculatorTravelScreen} />
@@ -281,40 +268,28 @@ export default function AppNavigator() {
         <Stack.Screen name="ManageChallenges" component={ManageChallengesScreen} />
         <Stack.Screen name="MyWallet" component={MyWalletScreen} />
         <Stack.Screen name="NotificationsCenter" component={NotificationsCenterScreen} />
-        <Stack.Screen name="OnboardingComplete" component={OnboardingCompleteScreen} />
         <Stack.Screen name="SchoolAdminWelcome" component={SchoolAdminWelcomeScreen} />
-        <Stack.Screen name="SchoolAnalytics" component={SchoolAnalyticsScreen} />
         <Stack.Screen name="SchoolCampaignDetails" component={SchoolCampaignDetailsScreen} />
         <Stack.Screen name="SchoolCampaigns1" component={SchoolCampaigns1Screen} />
         <Stack.Screen name="SchoolCampaigns2" component={SchoolCampaigns2Screen} />
         <Stack.Screen name="SchoolCodeEntry" component={SchoolCodeEntryScreen} />
-        <Stack.Screen name="SchoolCodeGeneration" component={SchoolCodeGenerationScreen} />
-        <Stack.Screen name="SchoolCodeManagement" component={SchoolCodeManagementScreen} />
         <Stack.Screen name="SchoolDashboard" component={SchoolDashboardScreen} />
         <Stack.Screen name="SchoolInitiatives" component={SchoolInitiativesScreen} />
         <Stack.Screen name="SchoolInitiativesList" component={SchoolInitiativesListScreen} />
-        <Stack.Screen name="SchoolRegistration" component={SchoolRegistrationScreen} />
-        <Stack.Screen name="SchoolSettingsProfile" component={SchoolSettingsProfileScreen} />
         <Stack.Screen name="SettingsNotifications" component={SettingsNotificationsScreen} />
         <Stack.Screen name="StudentDashboard" component={StudentDashboardScreen} />
         <Stack.Screen name="StudentDetailProfile" component={StudentDetailProfileScreen} />
-        <Stack.Screen name="StudentProfile" component={StudentProfileScreen} />
         <Stack.Screen name="StudentProfileSetup" component={StudentProfileSetupScreen} />
         <Stack.Screen name="StudentSectionStructure" component={StudentSectionStructureScreen} />
-        <Stack.Screen name="StudentStructure" component={StudentStructureScreen} />
         <Stack.Screen name="StudentWelcome" component={StudentWelcomeScreen} />
-        <Stack.Screen name="StudentsOverview" component={StudentsOverviewScreen} />
         <Stack.Screen name="SubmissionRejectionForm" component={SubmissionRejectionFormScreen} />
         <Stack.Screen name="SupportHelpHub" component={SupportHelpHubScreen} />
-        <Stack.Screen name="SustainabilityGoals" component={SustainabilityGoalsScreen} />
         <Stack.Screen name="TeacherAvatarSelection" component={TeacherAvatarSelectionScreen} />
         <Stack.Screen name="TeacherChallengesArena" component={TeacherChallengesArenaScreen} />
         <Stack.Screen name="TeacherClassSetup" component={TeacherClassSetupScreen} />
-        <Stack.Screen name="TeacherDashboard" component={TeacherDashboardScreen} />
         <Stack.Screen name="TeacherDashboardTutorial" component={TeacherDashboardTutorialScreen} />
         <Stack.Screen name="TeacherDetailProfile" component={TeacherDetailProfileScreen} />
         <Stack.Screen name="TeacherManagement" component={TeacherManagementScreen} />
-        <Stack.Screen name="TeacherProfile" component={TeacherProfileScreen} />
         <Stack.Screen name="TeacherProfileSetupStep1" component={TeacherProfileSetupStep1Screen} />
         <Stack.Screen name="TeacherProfileSetupStep2" component={TeacherProfileSetupStep2Screen} />
         <Stack.Screen name="TeacherWelcome" component={TeacherWelcomeScreen} />

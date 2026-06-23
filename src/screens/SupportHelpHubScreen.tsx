@@ -268,7 +268,7 @@ const styles = StyleSheet.create({
   tutorialCard: { flex: 1, minWidth: 250 },
   tutorialImageWrapper: { aspectRatio: 16/9, borderRadius: 8, overflow: 'hidden', marginBottom: 12 },
   tutorialImage: { width: '100%', height: '100%', resizeMode: 'cover' },
-  playOverlay: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.1)', alignItems: 'center', justifyContent: 'center' },
+  playOverlay: { ...StyleSheet.absoluteFill as any, backgroundColor: 'rgba(0,0,0,0.1)', alignItems: 'center', justifyContent: 'center' },
   playBtn: { width: 64, height: 64, borderRadius: 32, backgroundColor: 'rgba(255,255,255,0.9)', alignItems: 'center', justifyContent: 'center' },
   timeBadge: { position: 'absolute', bottom: 8, right: 8, backgroundColor: 'rgba(0,0,0,0.6)', paddingHorizontal: 6, paddingVertical: 2, borderRadius: 4 },
   timeBadgeText: { fontSize: 12, fontWeight: '700', color: '#fff' },

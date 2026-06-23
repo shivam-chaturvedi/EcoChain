@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export default function CompleteTeacherProfileSettingsScreen() {
+export default function CompleteTeacherProfileSettingsScreen({ navigation }: any) {
   const [approvalsNotif, setApprovalsNotif] = useState(true);
   const [newStudentNotif, setNewStudentNotif] = useState(true);
   const [newChallengeNotif, setNewChallengeNotif] = useState(false);
@@ -226,7 +226,7 @@ export default function CompleteTeacherProfileSettingsScreen() {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.logoutBtn}>
+        <TouchableOpacity style={styles.logoutBtn} onPress={() => navigation.reset({ index: 0, routes: [{ name: 'LoginScreen' }] })}>
           <Icon name="logout" size={24} color="#ffffff" />
           <Text style={styles.logoutBtnText}>Log Out</Text>
         </TouchableOpacity>

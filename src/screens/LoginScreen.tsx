@@ -22,8 +22,8 @@ export default function LoginScreen({ navigation }: any) {
   const [passwordFocused, setPasswordFocused] = useState(false);
 
   const handleLogin = () => {
-    // Navigate to main app or next flow
-    console.log('Login attempt', { email, password });
+    // Navigate to role selection flow
+    navigation.navigate('RoleSelectionScreen');
   };
 
   return (
@@ -161,7 +161,7 @@ export default function LoginScreen({ navigation }: any) {
             <Text style={styles.footerText}>
               Don't have an account?{' '}
             </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('RoleSelectionScreen')}>
               <Text style={styles.footerLink}>Sign up</Text>
             </TouchableOpacity>
           </View>

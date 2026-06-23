@@ -24,7 +24,7 @@ export default function SchoolSettingsProfileScreen({ navigation }: Props) {
   const handleLogout = () => {
     navigation.reset({
       index: 0,
-      routes: [{ name: 'Login' }],
+      routes: [{ name: 'LoginScreen' }],
     });
   };
 

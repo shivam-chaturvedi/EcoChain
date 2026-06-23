@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
   card: { backgroundColor: 'rgba(255,255,255,0.8)', borderRadius: 16, overflow: 'hidden', borderWidth: 1, borderColor: 'rgba(229,231,235,0.5)' },
   cardImageWrapper: { height: 192, position: 'relative' },
   cardImage: { width: '100%', height: '100%', resizeMode: 'cover' },
-  cardGradient: { ...StyleSheet.absoluteFillObject },
+  cardGradient: { ...StyleSheet.absoluteFill as any },
   cardHeaderInfo: { position: 'absolute', bottom: 16, left: 24 },
   badge: { paddingHorizontal: 12, paddingVertical: 4, borderRadius: 16, alignSelf: 'flex-start', marginBottom: 8 },
   badgeText: { fontSize: 10, fontWeight: '700' },

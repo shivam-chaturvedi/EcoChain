@@ -159,7 +159,7 @@ export default function TeacherDashboardScreen({ navigation }: Props) {
         <Text style={[styles.sectionTitle, { marginBottom: 12 }]}>Control Panel</Text>
 
         {/* Review Submissions Banner */}
-        <TouchableOpacity style={styles.reviewBanner} activeOpacity={0.85}>
+        <TouchableOpacity style={styles.reviewBanner} activeOpacity={0.85} onPress={() => navigation.navigate('VerificationQueue')}>
           <View style={styles.reviewLeft}>
             <View style={styles.reviewCheckBox}>
               <Text style={styles.reviewCheckText}>✓</Text>
@@ -184,6 +184,8 @@ export default function TeacherDashboardScreen({ navigation }: Props) {
               onPress={() => {
                 if (item.id === 'classes') navigation.navigate('TeacherClassManager');
                 if (item.id === 'challenges') navigation.navigate('TeacherAnalyticsDashboard');
+                if (item.id === 'announcement') navigation.navigate('AnnouncementsManagerScreen' as any);
+                if (item.id === 'event') navigation.navigate('EcoCalendarV2Screen' as any);
               }}>
               <View style={[styles.gridIconCircle, { backgroundColor: item.iconBg }]}>
                 <Text style={styles.gridIcon}>{item.icon}</Text>

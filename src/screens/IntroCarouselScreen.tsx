@@ -52,7 +52,7 @@ export default function IntroCarouselScreen({ navigation }: any) {
     if (currentIndex < slides.length - 1) {
       flatListRef.current?.scrollToIndex({ index: currentIndex + 1, animated: true });
     } else {
-      navigation.navigate('RoleSelectionScreen');
+      navigation.navigate('LoginScreen');
     }
   };
 

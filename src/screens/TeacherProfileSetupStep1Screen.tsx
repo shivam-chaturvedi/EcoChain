@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
   formCard: { backgroundColor: 'rgba(255,255,255,0.8)', borderRadius: 8, padding: 24, borderWidth: 1, borderColor: 'rgba(229,231,235,0.5)', elevation: 1, marginBottom: 40 },
   inputGroup: { marginBottom: 24 },
   label: { fontSize: 12, fontWeight: '700', color: '#3c4a42', letterSpacing: 1, marginBottom: 8, textTransform: 'uppercase' },
-  inputWrapper: { relative: true },
+  inputWrapper: { position: 'relative' },
   inputIcon: { position: 'absolute', left: 16, top: 16, zIndex: 1 },
   inputRightIcon: { position: 'absolute', right: 16, top: 16, zIndex: 1 },
   input: { backgroundColor: '#f3f4f5', borderRadius: 8, paddingLeft: 48, paddingRight: 16, height: 56, fontSize: 16, color: '#191c1d' },

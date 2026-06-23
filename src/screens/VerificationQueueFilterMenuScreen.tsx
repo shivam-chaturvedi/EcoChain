@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   headerTitle: { fontSize: 24, fontWeight: '800', color: '#006c49' },
   bgContent: { flex: 1 },
   modalOverlay: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(25,28,29,0.4)' },
-  modalBg: { ...StyleSheet.absoluteFillObject },
+  modalBg: { ...StyleSheet.absoluteFill as any },
   bottomSheet: { backgroundColor: 'rgba(248, 249, 250, 0.95)', borderTopLeftRadius: 16, borderTopRightRadius: 16, maxHeight: '90%', borderWidth: 1, borderColor: 'rgba(187,202,191,0.2)' },
   sheetHandle: { width: 48, height: 6, backgroundColor: '#bbcabf', borderRadius: 3, alignSelf: 'center', marginTop: 12, marginBottom: 12 },
   sheetHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 24, paddingBottom: 16 },

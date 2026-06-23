@@ -25,7 +25,7 @@ export default function StudentDashboardScreen({ navigation }: any) {
           <Text style={styles.logoText}>ChonX</Text>
         </View>
         <View style={styles.headerRight}>
-          <TouchableOpacity style={styles.iconBtn}>
+          <TouchableOpacity style={styles.iconBtn} onPress={() => navigation.navigate('NotificationCenter')}>
             <Icon name="notifications" size={24} color="#006c49" />
           </TouchableOpacity>
         </View>
@@ -44,7 +44,7 @@ export default function StudentDashboardScreen({ navigation }: any) {
               <Text style={styles.carbonLabel}>CARBON FOOTPRINT SUMMARY</Text>
               <Text style={styles.carbonTitle}>Today’s Footprint: 4.7 kg CO₂</Text>
               <Text style={styles.carbonDesc}>You're 12% lower than your weekly average. Great job, Aisha!</Text>
-              <TouchableOpacity style={styles.viewDetailsBtn}>
+              <TouchableOpacity style={styles.viewDetailsBtn} onPress={() => navigation.navigate('CarbonFootprintResult')}>
                 <Text style={styles.viewDetailsText}>VIEW DETAILS</Text>
               </TouchableOpacity>
             </View>
@@ -65,7 +65,7 @@ export default function StudentDashboardScreen({ navigation }: any) {
               <Text style={styles.pointsLabel}>YOUR REWARDS</Text>
               <Text style={styles.pointsValue}>590</Text>
               <Text style={styles.pointsSub}>ECOPOINTS</Text>
-              <TouchableOpacity style={styles.redeemBtn}>
+              <TouchableOpacity style={styles.redeemBtn} onPress={() => navigation.navigate('EcoWallet')}>
                 <Text style={styles.redeemText}>REDEEM POINTS</Text>
               </TouchableOpacity>
             </View>
@@ -73,19 +73,19 @@ export default function StudentDashboardScreen({ navigation }: any) {
             <View style={styles.quickActionsContainer}>
               {/* Quick Actions 2x2 */}
               <View style={styles.quickActionsGrid}>
-                <TouchableOpacity style={styles.quickActionCard}>
+                <TouchableOpacity style={styles.quickActionCard} onPress={() => navigation.navigate('LogActivity')}>
                   <Icon name="add-task" size={32} color="#006c49" />
                   <Text style={styles.quickActionText}>Log Activity</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.quickActionCard}>
+                <TouchableOpacity style={styles.quickActionCard} onPress={() => navigation.navigate('ArenaHub')}>
                   <Icon name="card-giftcard" size={32} color="#005ac2" />
                   <Text style={styles.quickActionText}>View Rewards</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.quickActionCard}>
+                <TouchableOpacity style={styles.quickActionCard} onPress={() => navigation.navigate('StudentCalendar')}>
                   <Icon name="calendar-month" size={32} color="#006b5f" />
                   <Text style={styles.quickActionText}>Calendar</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.quickActionCard}>
+                <TouchableOpacity style={styles.quickActionCard} onPress={() => navigation.navigate('Leaderboard')}>
                   <Icon name="leaderboard" size={32} color="#ba1a1a" />
                   <Text style={styles.quickActionText}>Leaderboard</Text>
                 </TouchableOpacity>
@@ -116,7 +116,7 @@ export default function StudentDashboardScreen({ navigation }: any) {
           <View style={styles.recentCard}>
             <View style={styles.recentHeader}>
               <Text style={styles.recentTitle}>Recent Activities</Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('ActivityFeed')}>
                 <Text style={styles.seeAllText}>SEE ALL</Text>
               </TouchableOpacity>
             </View>
@@ -172,7 +172,7 @@ export default function StudentDashboardScreen({ navigation }: any) {
       </ScrollView>
 
       {/* FAB */}
-      <TouchableOpacity style={styles.fab}>
+      <TouchableOpacity style={styles.fab} onPress={() => navigation.navigate('EcoBot')}>
         <Icon name="smart-toy" size={32} color="#fff" />
       </TouchableOpacity>
     </SafeAreaView>
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
   challengeIconBg: { width: 64, height: 64, borderRadius: 16, backgroundColor: 'rgba(16,185,129,0.1)', alignItems: 'center', justifyContent: 'center' },
   challengeContent: { flex: 1, gap: 8 },
   challengeHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  challengeTitle: { fontSize: 24, fontWeight: '600', color: '#191c1d' },
+  challengeTitle: { fontSize: 24, fontWeight: '600', color: '#191c1d', flex: 1, marginRight: 8 },
   challengeBadge: { backgroundColor: 'rgba(16,185,129,0.2)', paddingHorizontal: 12, paddingVertical: 4, borderRadius: 16 },
   challengeBadgeText: { fontSize: 12, fontWeight: '700', color: '#006c49' },
   progressBarBg: { height: 12, backgroundColor: '#edeeef', borderRadius: 6 },

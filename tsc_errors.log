@@ -1,0 +1,57 @@
+src/navigation/AppNavigator.tsx(16,8): error TS2300: Duplicate identifier 'SchoolRegistrationScreen'.
+src/navigation/AppNavigator.tsx(18,8): error TS2300: Duplicate identifier 'SchoolCodeGenerationScreen'.
+src/navigation/AppNavigator.tsx(19,8): error TS2300: Duplicate identifier 'StudentStructureScreen'.
+src/navigation/AppNavigator.tsx(20,8): error TS2300: Duplicate identifier 'SustainabilityGoalsScreen'.
+src/navigation/AppNavigator.tsx(21,8): error TS2300: Duplicate identifier 'OnboardingCompleteScreen'.
+src/navigation/AppNavigator.tsx(23,8): error TS2300: Duplicate identifier 'SchoolAnalyticsScreen'.
+src/navigation/AppNavigator.tsx(24,8): error TS2300: Duplicate identifier 'SchoolCodeManagementScreen'.
+src/navigation/AppNavigator.tsx(26,8): error TS2300: Duplicate identifier 'SchoolSettingsProfileScreen'.
+src/navigation/AppNavigator.tsx(28,8): error TS2300: Duplicate identifier 'StudentsOverviewScreen'.
+src/navigation/AppNavigator.tsx(51,8): error TS2300: Duplicate identifier 'StudentProfileScreen'.
+src/navigation/AppNavigator.tsx(58,8): error TS2300: Duplicate identifier 'TeacherDashboardScreen'.
+src/navigation/AppNavigator.tsx(73,8): error TS2300: Duplicate identifier 'TeacherProfileScreen'.
+src/navigation/AppNavigator.tsx(118,8): error TS2300: Duplicate identifier 'OnboardingCompleteScreen'.
+src/navigation/AppNavigator.tsx(120,8): error TS2300: Duplicate identifier 'SchoolAnalyticsScreen'.
+src/navigation/AppNavigator.tsx(125,8): error TS2300: Duplicate identifier 'SchoolCodeGenerationScreen'.
+src/navigation/AppNavigator.tsx(126,8): error TS2300: Duplicate identifier 'SchoolCodeManagementScreen'.
+src/navigation/AppNavigator.tsx(130,8): error TS2300: Duplicate identifier 'SchoolRegistrationScreen'.
+src/navigation/AppNavigator.tsx(131,8): error TS2300: Duplicate identifier 'SchoolSettingsProfileScreen'.
+src/navigation/AppNavigator.tsx(135,8): error TS2300: Duplicate identifier 'StudentProfileScreen'.
+src/navigation/AppNavigator.tsx(138,8): error TS2300: Duplicate identifier 'StudentStructureScreen'.
+src/navigation/AppNavigator.tsx(140,8): error TS2300: Duplicate identifier 'StudentsOverviewScreen'.
+src/navigation/AppNavigator.tsx(143,8): error TS2300: Duplicate identifier 'SustainabilityGoalsScreen'.
+src/navigation/AppNavigator.tsx(147,8): error TS2300: Duplicate identifier 'TeacherDashboardScreen'.
+src/navigation/AppNavigator.tsx(151,8): error TS2300: Duplicate identifier 'TeacherProfileScreen'.
+src/navigation/types.ts(18,3): error TS2300: Duplicate identifier 'TeacherDashboard'.
+src/navigation/types.ts(33,3): error TS2300: Duplicate identifier 'TeacherProfile'.
+src/navigation/types.ts(36,3): error TS2300: Duplicate identifier 'SchoolRegistration'.
+src/navigation/types.ts(38,3): error TS2300: Duplicate identifier 'SchoolCodeGeneration'.
+src/navigation/types.ts(39,3): error TS2300: Duplicate identifier 'StudentStructure'.
+src/navigation/types.ts(40,3): error TS2300: Duplicate identifier 'SustainabilityGoals'.
+src/navigation/types.ts(41,3): error TS2300: Duplicate identifier 'OnboardingComplete'.
+src/navigation/types.ts(43,3): error TS2300: Duplicate identifier 'SchoolAnalytics'.
+src/navigation/types.ts(44,3): error TS2300: Duplicate identifier 'SchoolCodeManagement'.
+src/navigation/types.ts(46,3): error TS2300: Duplicate identifier 'SchoolSettingsProfile'.
+src/navigation/types.ts(48,3): error TS2300: Duplicate identifier 'StudentsOverview'.
+src/navigation/types.ts(49,3): error TS2300: Duplicate identifier 'TeacherDetailProfile'.
+src/navigation/types.ts(50,3): error TS2300: Duplicate identifier 'StudentDetailProfile'.
+src/navigation/types.ts(73,3): error TS2300: Duplicate identifier 'StudentProfile'.
+src/navigation/types.ts(116,3): error TS2300: Duplicate identifier 'OnboardingComplete'.
+src/navigation/types.ts(118,3): error TS2300: Duplicate identifier 'SchoolAnalytics'.
+src/navigation/types.ts(123,3): error TS2300: Duplicate identifier 'SchoolCodeGeneration'.
+src/navigation/types.ts(124,3): error TS2300: Duplicate identifier 'SchoolCodeManagement'.
+src/navigation/types.ts(128,3): error TS2300: Duplicate identifier 'SchoolRegistration'.
+src/navigation/types.ts(129,3): error TS2300: Duplicate identifier 'SchoolSettingsProfile'.
+src/navigation/types.ts(132,3): error TS2300: Duplicate identifier 'StudentDetailProfile'.
+src/navigation/types.ts(133,3): error TS2300: Duplicate identifier 'StudentProfile'.
+src/navigation/types.ts(136,3): error TS2300: Duplicate identifier 'StudentStructure'.
+src/navigation/types.ts(138,3): error TS2300: Duplicate identifier 'StudentsOverview'.
+src/navigation/types.ts(141,3): error TS2300: Duplicate identifier 'SustainabilityGoals'.
+src/navigation/types.ts(145,3): error TS2300: Duplicate identifier 'TeacherDashboard'.
+src/navigation/types.ts(147,3): error TS2300: Duplicate identifier 'TeacherDetailProfile'.
+src/navigation/types.ts(149,3): error TS2300: Duplicate identifier 'TeacherProfile'.
+src/screens/TeacherDetailProfileScreen.tsx(101,33): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: ViewProps): View', gave the following error.
+    Type '{ fontSize: number; color: string; }' is not assignable to type 'ViewStyle | Falsy | RecursiveArray<ViewStyle | Falsy> | readonly (ViewStyle | Falsy)[]'.
+  Overload 2 of 2, '(props: ViewProps, context: any): View', gave the following error.
+    Type '{ fontSize: number; color: string; }' is not assignable to type 'ViewStyle | Falsy | RecursiveArray<ViewStyle | Falsy> | readonly (ViewStyle | Falsy)[]'.

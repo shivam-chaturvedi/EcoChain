@@ -30,8 +30,12 @@ export default function RoleSelectionScreen({ navigation }: any) {
   };
 
   const handleContinue = () => {
-    if (selectedRole) {
-      navigation.navigate('LoginScreen');
+    if (selectedRole === 'student') {
+      navigation.navigate('StudentWelcome');
+    } else if (selectedRole === 'teacher') {
+      navigation.navigate('TeacherWelcome');
+    } else if (selectedRole === 'school') {
+      navigation.navigate('SchoolAdminWelcome');
     }
   };
 
