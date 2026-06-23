@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.backgroundGreen,
   },
   headerBg: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     backgroundColor: Colors.backgroundGreen,
   },
   kavContainer: {

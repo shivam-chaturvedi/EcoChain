@@ -70,7 +70,7 @@ export default function CampaignsScreen({ navigation }: Props) {
           {/* Image area */}
           <View style={[styles.imageArea, { backgroundColor: '#1A3D2E' }]}>
             {/* Background layers */}
-            <View style={[StyleSheet.absoluteFillObject, { backgroundColor: '#0D5C38', opacity: 0.7 }]} />
+            <View style={[StyleSheet.absoluteFill, { backgroundColor: '#0D5C38', opacity: 0.7 }]} />
             <Text style={styles.imageEmoji}>🌱</Text>
 
             {/* SCHOOL-WIDE badge */}
@@ -124,7 +124,7 @@ export default function CampaignsScreen({ navigation }: Props) {
         <View style={styles.campaignCard}>
           {/* Image area */}
           <View style={[styles.imageArea, { backgroundColor: '#0A3D55', height: IMG_H * 0.85 }]}>
-            <View style={[StyleSheet.absoluteFillObject, { backgroundColor: '#0E6B8A', opacity: 0.6 }]} />
+            <View style={[StyleSheet.absoluteFill, { backgroundColor: '#0E6B8A', opacity: 0.6 }]} />
             <Text style={styles.imageEmoji}>🌊</Text>
 
             {/* Bottom text overlay */}
@@ -154,7 +154,7 @@ export default function CampaignsScreen({ navigation }: Props) {
         <View style={styles.upcomingCard}>
           {/* Image */}
           <View style={[styles.upcomingImage, { backgroundColor: '#2D1A0A' }]}>
-            <View style={[StyleSheet.absoluteFillObject, { backgroundColor: '#3D2A10', opacity: 0.6 }]} />
+            <View style={[StyleSheet.absoluteFill, { backgroundColor: '#3D2A10', opacity: 0.6 }]} />
             <Text style={styles.upcomingEmoji}>🌱</Text>
           </View>
 

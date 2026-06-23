@@ -63,7 +63,7 @@ function CircularGauge({
       })}
 
       {/* centre content */}
-      <View style={[StyleSheet.absoluteFillObject, styles.gaugeCentre]}>
+      <View style={[StyleSheet.absoluteFill, styles.gaugeCentre]}>
         <Text style={styles.gaugeLabel}>DAILY AVERAGE</Text>
         <View style={styles.gaugeValueRow}>
           <Text style={styles.gaugeNumber}>{value}</Text>

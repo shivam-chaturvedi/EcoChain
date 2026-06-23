@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
+  Animated,
   FlatList,
   StatusBar,
 } from 'react-native';
@@ -15,8 +16,8 @@ import { Colors } from '../../../constants';
 
 const { width, height } = Dimensions.get('window');
 
-type Props = {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'IntroCarousel'>;
+type IntroCarouselScreenProps = {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'IntroCarouselScreen'>;
 };
 
 const slides = [
@@ -49,8 +50,9 @@ const slides = [
   },
 ];
 
-export default function IntroCarouselScreen({ navigation }: Props) {
+export default function IntroCarouselScreen({ navigation }: IntroCarouselScreenProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const scrollX = useRef(new Animated.Value(0)).current;
   const flatListRef = useRef<FlatList>(null);
 
   const handleContinue = () => {

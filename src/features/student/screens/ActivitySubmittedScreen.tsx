@@ -89,7 +89,7 @@ export default function ActivitySubmittedScreen({ navigation: _navigation }: Pro
       <StatusBar barStyle="dark-content" backgroundColor="#E8F5EE" />
 
       {/* Decorative background */}
-      <View style={StyleSheet.absoluteFillObject} pointerEvents="none">
+      <View style={StyleSheet.absoluteFill} pointerEvents="none">
         {DECO.map((s, i) => <DecoShape key={i} {...s} />)}
       </View>
 

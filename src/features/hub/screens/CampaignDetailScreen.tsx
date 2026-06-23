@@ -45,8 +45,8 @@ export default function CampaignDetailScreen({ navigation }: Props) {
         {/* ── Hero image ──────────────────────── */}
         <View style={[styles.heroImage]}>
           {/* Simulated nature photo layers */}
-          <View style={[StyleSheet.absoluteFillObject, { backgroundColor: '#0D2A15' }]} />
-          <View style={[StyleSheet.absoluteFillObject, { backgroundColor: '#1A4D26', opacity: 0.7 }]} />
+          <View style={[StyleSheet.absoluteFill, { backgroundColor: '#0D2A15' }]} />
+          <View style={[StyleSheet.absoluteFill, { backgroundColor: '#1A4D26', opacity: 0.7 }]} />
           <View style={styles.heroBottomFade} />
           <Text style={styles.heroEmoji}>🌱</Text>
 

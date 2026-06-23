@@ -124,8 +124,8 @@ export default function ActivityFormScreen({ navigation }: Props) {
           {/* Demo photo thumbnail */}
           {hasPhoto && (
             <View style={styles.photoThumb}>
-              <View style={[StyleSheet.absoluteFillObject, { backgroundColor: '#0D2B1A' }]} />
-              <View style={[StyleSheet.absoluteFillObject, { backgroundColor: '#1A4D2E', opacity: 0.75 }]} />
+              <View style={[StyleSheet.absoluteFill, { backgroundColor: '#0D2B1A' }]} />
+              <View style={[StyleSheet.absoluteFill, { backgroundColor: '#1A4D2E', opacity: 0.75 }]} />
               <Text style={styles.photoThumbEmoji}>🍾</Text>
             </View>
           )}

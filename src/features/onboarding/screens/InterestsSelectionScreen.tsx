@@ -16,8 +16,8 @@ import { Colors } from '../../../constants';
 const { width } = Dimensions.get('window');
 const MAX_SELECTIONS = 5;
 
-type Props = {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'InterestsSelection'>;
+type InterestsSelectionScreenProps = {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'InterestsSelectionScreen'>;
 };
 
 type Topic = {
@@ -73,7 +73,7 @@ const TOPICS: Topic[] = [
   },
 ];
 
-export default function InterestsSelectionScreen({ navigation }: Props) {
+export default function InterestsSelectionScreen({ navigation }: InterestsSelectionScreenProps) {
   const [selected, setSelected] = useState<string[]>([]);
 
   const toggleTopic = (id: string) => {

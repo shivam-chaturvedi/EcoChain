@@ -36,7 +36,7 @@ export default function SchoolCodeScreen({ navigation }: Props) {
 
   const handleVerify = () => {
     if (!isValid) return;
-    navigation.navigate('InterestsSelection');
+    navigation.navigate('InterestsSelectionScreen');
   };
 
   return (

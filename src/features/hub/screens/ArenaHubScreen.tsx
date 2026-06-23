@@ -97,12 +97,12 @@ export default function ArenaHubScreen({ navigation }: Props) {
           activeOpacity={0.9}
           onPress={() => navigation.navigate('Campaigns')}>
           {/* Gradient simulation using two color halves */}
-          <View style={[StyleSheet.absoluteFillObject, { flexDirection: 'row', borderRadius: 18 }]}>
+          <View style={[StyleSheet.absoluteFill, { flexDirection: 'row', borderRadius: 18 }]}>
             <View style={{ flex: 1, backgroundColor: '#22C55E', borderTopLeftRadius: 18, borderBottomLeftRadius: 18 }} />
             <View style={{ flex: 1, backgroundColor: '#6366F1', borderTopRightRadius: 18, borderBottomRightRadius: 18 }} />
           </View>
           {/* Overlay tint for text readability */}
-          <View style={[StyleSheet.absoluteFillObject, { backgroundColor: 'rgba(0,0,0,0.08)', borderRadius: 18 }]} />
+          <View style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.08)', borderRadius: 18 }]} />
 
           <View style={styles.campaignCardContent}>
             <View style={styles.campTopRow}>

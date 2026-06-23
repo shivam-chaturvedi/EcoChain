@@ -89,8 +89,8 @@ export default function LogActivityScreen({ navigation }: Props) {
 
         {/* ── Image preview ─────────────────── */}
         <View style={styles.imagePreview}>
-          <View style={[StyleSheet.absoluteFillObject, { backgroundColor: '#1E4D3A' }]} />
-          <View style={[StyleSheet.absoluteFillObject, { backgroundColor: '#2D6A4F', opacity: 0.55 }]} />
+          <View style={[StyleSheet.absoluteFill, { backgroundColor: '#1E4D3A' }]} />
+          <View style={[StyleSheet.absoluteFill, { backgroundColor: '#2D6A4F', opacity: 0.55 }]} />
           <Text style={styles.previewEmoji}>🌿</Text>
         </View>
 
